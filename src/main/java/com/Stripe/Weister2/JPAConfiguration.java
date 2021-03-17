@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.woodM.Project.repositorie")
+@EnableJpaRepositories(basePackages = "com.Stripe.Weister2.repositorie")
 @EnableTransactionManagement
 public class JPAConfiguration {
 	
@@ -34,8 +34,8 @@ public class JPAConfiguration {
 		em.setDataSource(dataSource());
 		//em.setPersistenceUnitName("Wood");
 		
-		em.setPersistenceUnitName("Project");
-		em.setPackagesToScan("com.woodM.Project.domain");
+		em.setPersistenceUnitName("Weister2");
+		em.setPackagesToScan("com.Stripe.Weister2.domain");
 		
 		
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
