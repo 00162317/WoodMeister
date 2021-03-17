@@ -1,6 +1,6 @@
 package com.Stripe.Weister2.Security;
 
-/*
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.woodM.Project.Domain.Usuario;
+import com.Stripe.Weister2.domain.Usuario;
+
 
 public class PrincipalUserDetails implements UserDetails, Serializable {
 
@@ -86,4 +87,4 @@ public class PrincipalUserDetails implements UserDetails, Serializable {
         return Objects.equals(this.user.getNombre(), that.getUsername());
     }
 
-}*/
+}

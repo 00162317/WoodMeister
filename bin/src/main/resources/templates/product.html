@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Boostrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--Boostrap Script  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!--animate css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!--Own Styles  -->
+    <link rel="stylesheet" href="css/cstyle.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
+    <!--ALLfont.es-->
+    <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
+    <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <th:block th:include="/block/header"></th:block>
+
+    <div class="container rob">
+        <div class="row">
+            <div class="col-sm-7">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/uno.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/dos.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/tres.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Product Details</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Specification</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <div class="tab-content detalle2" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 th:text="'Nombre del producto: '+${producto.nombre}"></h3>
+                        <label th:text="${producto.descripcion}">
+                        </label>
+                        <div class="container">
+                            <div class="row justify-content-md-center">
+                                <div class="col col-lg-12">
+                                    <table class="table text-center">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Metal</th>
+                                                <th scope="col">Madera Pino</th>
+                                                <th scope="col">Madera Cedro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>$$$</td>
+                                                <td>$$$</td>
+                                                <td>$$$</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <label th:text="'Precio: '+${producto.precio}"></label>
+                                    <p></p>
+                                    <label th:text="'Material: '+${producto.material.nombre_material}"></label>
+                                    <p></p>
+                                    <button type="button" class="btn btn-primary" th:onclick ="'obtenerIdsC('+${producto.id_producto}+')'">
+                                        Agregar a carrito
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <label>
+
+                        </label>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <label th:text="'Detalles: '+${producto.detalles}">
+                        </label>
+                        <p></p>
+                        <label th:text="'Tipo de producto: '+${producto.tipo_producto.nombre_tipo}">
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <label>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum quas tempore
+                            laboriosam totam quos dolorem earum incidunt nam excepturi molestiae ad labore
+                            repellendus numquam, eius, quis sit dolores minus! Cumque.
+                            <p></p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div class="promocion palabra">
+        <div class="container rob">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-10">
+                    <form>
+                        <div class="mb-3">
+                            <p class="fs-2">Recibe promociones</p>
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp">We'll never share your email with anyone else.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:include="/block/footer"></th:block>
+
+</body>
+
+</html>

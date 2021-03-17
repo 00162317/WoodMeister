@@ -1,6 +1,6 @@
 package com.Stripe.Weister2.Security;
 
-/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
 	                .loginPage("/login").permitAll(false)
 	                .and()
+	                .csrf().ignoringAntMatchers("/checkout")
+	                .ignoringAntMatchers("/charge")
+	                .and()
 	                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").
 	                and()
 	             .sessionManagement()                          // 2
@@ -99,4 +102,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             return true;
         }
     }
-}*/
+}

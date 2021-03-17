@@ -1,0 +1,33 @@
+298-314
+<html>
+<head>
+<style> 
+.si{
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  animation: mymove 1s;
+}
+
+@keyframes mymove {
+  from { opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translate3d(0, 40px, 0);
+    transform: translate3d(0, 40px, 0);}
+  to { opacity: 1;
+    -webkit-transform: none;
+    transform: none;}
+}
+</style>
+</head>
+<body>
+
+<h1>The @keyframes Rule</h1>
+
+<p><strong>Note:</strong> The @keyframes rule is not supported in Internet Explorer 9 and earlier versions.</p>
+
+<div class ="si"></div>
+
+</body>
+</html>
