@@ -1,0 +1,58 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-lg-12">
+                                <div class="text-center">
+                                    <p class="fs-2">Registro de ventas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container rob">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-lg-12">
+                                <table class=" table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Detalle</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Material</th>
+                                            <th scope="col">Tipo Producto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <th:block th:each="producto, row:${productos}">
+                                            <tr>
+                                                <th th:text="${producto.id_producto}" />
+                                                <th th:text="${producto.nombre}" />
+                                                <th th:text="${producto.detalles}" />
+                                                <th th:text="${producto.precio}" />
+                                                <th th:text="${producto.material.nombre_material}" />
+                                                <th th:text="${producto.tipo_producto.nombre_tipo}" />
+                                            </tr>
+                                        </th:block>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

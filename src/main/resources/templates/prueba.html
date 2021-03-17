@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Mostrando lista de sexo</h2>
+    
+    	<table>
+		<thead>
+			<th>ID</th>
+			<th>Nombre</th>
+
+		</thead>
+		<th:block th:each="usuario, row:${sexos}">
+			<tr>
+				<th th:text="${usuario.id_sexo}"/>
+				<th th:text="${usuario.nombre}"/>
+
+			</tr>
+		</th:block>
+	</table>
+	
+	<h2>Mostrando lista de Material</h2>
+    
+    	<table>
+		<thead>
+			<th>ID</th>
+			<th>Nombre Material</th>
+
+		</thead>
+		<th:block th:each="usuario, row:${materials}">
+			<tr>
+				<th th:text="${usuario.id_material}"/>
+				<th th:text="${usuario.nombre_material}"/>
+
+			</tr>
+		</th:block>
+	</table>
+	
+		<h2>Mostrando lista de Personal Profesional</h2>
+    
+    	<table>
+		<thead>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Cargo</th>
+			<th>Nombre_imagen</th>
+			<th>Descripcion</th>
+
+		</thead>
+		<th:block th:each="usuario, row:${personalProfesionals}">
+			<tr>
+				<th th:text="${usuario.id_personal_pro}"/>
+				<th th:text="${usuario.nombre}"/>
+				<th th:text="${usuario.cargo}"/>
+				<th th:text="${usuario.nombre_imagen}"/>
+				<th th:text="${usuario.descripcion}"/>
+
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------
+MODIFICAR
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Boostrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--Boostrap Script  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!--animate css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!--Own Styles  -->
+    <link rel="stylesheet" href="css/cstyle.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
+    <!--ALLfont.es-->
+    <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
+    <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <!--NAVBAR-->
+        <nav class=" navbar navbar-default navbar-expand-md navbar-light ms-a" style="background-color: #192537;">
+            <div class="container-fluid">
+                <a class="navbar-brand ps-lg-5 ps-md-5 ps-sm-5" href="index1.html"><img
+                        src="images/woodMeister.png"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                    <ul class="navbar-nav ms-auto pe-5">
+                        <li class="dropdownown "> <a class="navown px-2" href="product.html">PRODUCTS</a>
+                            <div class="dropown-content">
+                                <div><a class="navown" href="#">Night Desk</a></div>
+                                <div><a class="navown" href="#">Tables</a></div>
+                                <div><a class="navown" href="#">WorkBench</a></div>
+                            </div>
+                        </li>
+                        <li> <a class="navown px-2" href="about.html">ABOUT US</a> </li>
+                        <li> <a class="navown px-2" href="#">ORDERS</a> </li>
+                        <li> <a class="navown px-2" href="register.html">SING IN</a> </li>
+                        <li> <a class="navown px-2" href="about.html">SHOP<i class="fas fa-shopping-cart ps-2"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!------------------------------------------------------------------------------------------------------------------------------>
+    <div class="container rob">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-12 text-center"">
+            
+                <p class=" fs-2">Modificar producto</p>
+                <table class=" table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tipo de material</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Area</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Escritorio</td>
+                            <td>Metal</td>
+                            <td><img src="images/diana.jpg" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>40kg</td>
+                            <td>30cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Modificar</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Mesa</td>
+                            <td>Madera</td>
+                            <td><img src="images/uno.jpg" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>20kg</td>
+                            <td>70cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Modificar</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Estanteria</td>
+                            <td>Metal</td>
+                            <td><img src="images/dos.png" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>70kg</td>
+                            <td>30cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Modificar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container rob">
+        <div class="row justify-content-md-center rob">
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="registro.html">
+                                <img src="images/volver.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                            <a href="agregar.html">
+                                <img src="images/agregar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                            <a href="eliminar.html">
+                                <img src="images/eliminar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container-fluid footerown">
+            <div class="row row-pb-md text-start">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <h3 class="titulos">Wood Meister</h3>
+                    <p class="parrafos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at sit,
+                        quidem illum nihil,
+                        ipsam incidunt in velit ut adipisci quaerat eum iusto omnis ea sint nemo pariatur possimus iste.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-6">
+
+                    <a class="navown2" href="about.html">About</a>
+                    <a class="navown2" href="#">Disenadores</a>
+                    <a class="navown2" href="#">Desarolladores</a>
+                    <a class="navown2" href="#">Equipo de trabajo</a>
+                    <a class="navown2" href="#">Politica de privacidad</a>
+
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-6 mt-sm-3">
+                    <a class="navown2" href="#"><i class="fab fa-twitter-square"></i> Siguenos por Twitter</a>
+                    <a class="navown2" href="#"><i class="fab fa-facebook-square"></i> Siguenos por Facebook</a>
+                    <a class="navown2" href="#"><i class="fab fa-instagram"></i> Siguenos por Instagram</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 text-center">
+                <p class="parrafo">
+                    <small class="block">&copy; 2020 por Wood Meister, El Salvador. Todos los derechos
+                        reservados.</small><br>
+                    <small class="block">Designed by <a href="#" target="_blank">Alguien</a>
+                        Imagenes e iconos: <a href="#" target="_blank">Alguien</a> &amp; <a href="#"
+                            target="_blank">Font Awesome</a></small>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+------------------------------------------------------------------------------------------------------------------------------
+Eliminar
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Boostrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--Boostrap Script  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!--animate css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!--Own Styles  -->
+    <link rel="stylesheet" href="css/cstyle.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
+    <!--ALLfont.es-->
+    <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
+    <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <!--NAVBAR-->
+        <nav class=" navbar navbar-default navbar-expand-md navbar-light ms-a" style="background-color: #192537;">
+            <div class="container-fluid">
+                <a class="navbar-brand ps-lg-5 ps-md-5 ps-sm-5" href="index1.html"><img
+                        src="images/woodMeister.png"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                    <ul class="navbar-nav ms-auto pe-5">
+                        <li class="dropdownown "> <a class="navown px-2" href="product.html">PRODUCTS</a>
+                            <div class="dropown-content">
+                                <div><a class="navown" href="#">Night Desk</a></div>
+                                <div><a class="navown" href="#">Tables</a></div>
+                                <div><a class="navown" href="#">WorkBench</a></div>
+                            </div>
+                        </li>
+                        <li> <a class="navown px-2" href="about.html">ABOUT US</a> </li>
+                        <li> <a class="navown px-2" href="#">ORDERS</a> </li>
+                        <li> <a class="navown px-2" href="register.html">SING IN</a> </li>
+                        <li> <a class="navown px-2" href="about.html">SHOP<i class="fas fa-shopping-cart ps-2"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!------------------------------------------------------------------------------------------------------------------------------>
+    <div class="container rob">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-12 text-center">
+                <p class=" fs-2">Eliminar producto</p>
+                <table class=" table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tipo de material</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Area</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Escritorio</td>
+                            <td>Metal</td>
+                            <td><img src="images/diana.jpg" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>40kg</td>
+                            <td>30cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Eliminar</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Mesa</td>
+                            <td>Madera</td>
+                            <td><img src="images/uno.jpg" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>20kg</td>
+                            <td>70cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Eliminar</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Estanteria</td>
+                            <td>Metal</td>
+                            <td><img src="images/dos.png" class="card-img-top" style="width: 80px;" alt="..."></td>
+                            <td>70kg</td>
+                            <td>30cm2</td>
+                            <td> <button type="submit" class="btn btn-primary">Eliminar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container rob">
+        <div class="row justify-content-md-center rob">
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="registro.html">
+                                <img src="images/volver.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                            <a href="agregar.html">
+                                <img src="images/agregar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                            <a href="modificar.html">
+                                <img src="images/modificar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container-fluid footerown">
+            <div class="row row-pb-md text-start">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <h3 class="titulos">Wood Meister</h3>
+                    <p class="parrafos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at sit,
+                        quidem illum nihil,
+                        ipsam incidunt in velit ut adipisci quaerat eum iusto omnis ea sint nemo pariatur possimus iste.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-6">
+
+                    <a class="navown2" href="about.html">About</a>
+                    <a class="navown2" href="#">Disenadores</a>
+                    <a class="navown2" href="#">Desarolladores</a>
+                    <a class="navown2" href="#">Equipo de trabajo</a>
+                    <a class="navown2" href="#">Politica de privacidad</a>
+
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-6 col-6 mt-sm-3">
+                    <a class="navown2" href="#"><i class="fab fa-twitter-square"></i> Siguenos por Twitter</a>
+                    <a class="navown2" href="#"><i class="fab fa-facebook-square"></i> Siguenos por Facebook</a>
+                    <a class="navown2" href="#"><i class="fab fa-instagram"></i> Siguenos por Instagram</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 text-center">
+                <p class="parrafo">
+                    <small class="block">&copy; 2020 por Wood Meister, El Salvador. Todos los derechos
+                        reservados.</small><br>
+                    <small class="block">Designed by <a href="#" target="_blank">Alguien</a>
+                        Imagenes e iconos: <a href="#" target="_blank">Alguien</a> &amp; <a href="#"
+                            target="_blank">Font Awesome</a></small>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

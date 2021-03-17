@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <!--Boostrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--Boostrap Script  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!--animate css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!--Own Styles  -->
+    <link rel="stylesheet" href="css/cstyle.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
+    <!--ALLfont.es-->
+    <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
+    <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+    
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <th:block th:include="/block/header"></th:block>
+    <!------------------------------------------------------------------------------------------------------------------------------>
+
+    <div class="container rob">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-8">
+                <div class="text-center">
+                    <p class="fs-2">Agregar producto</p>
+                </div>
+                <form th:action="@{/ingresarProducto}" method="POST" th:object="${producto}">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
+                        <input id="nombre" th:field="${producto.nombre}" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Descripcion</label>
+                        <input id="descripcion" th:field="${producto.descripcion}" type="text" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Detalles</label>
+                        <input id="detalles" th:field="${producto.detalles}" type="text" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Precio</label>
+                        <input id="precio" th:field="${producto.precio}" type="text" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Tipo Material</label>
+                        <select id="tipoMaterial" th:field="${producto.material}">
+                            <option value="0">Seleccione una opcion</option>
+                            <option th:each=item:${listaMaterial} th:value="${item.id_material}"
+                                th:text="${item.nombre_material}">
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Tipo Producto</label>
+                        <select id="tipoProducto" th:field="${producto.tipo_producto}">
+                            <option value="0">Seleccione una opcion</option>
+                            <option th:each=item:${listaTproducto} th:value="${item.id_tipo_producto}"
+                                th:text="${item.nombre_tipo}">
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <!--
+                        a id="limpiar">Registrar</a>
+                    -->Agregar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container rob">
+        <div class="row justify-content-md-center rob">
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="registro.html">
+                                <img src="images/volver.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                            <a href="modificar.html">
+                                <img src="images/modificar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                            <a href="eliminar.html">
+                                <img src="images/eliminar.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<th:block th:include="/block/footer"></th:block>
+	
+</body>
+
+<script type="text/javascript">
+    var a = document.getElementById("limpiar");
+    a.onclick = limpiar
+    if (document.getElementById("id").value != "") {
+        document.getElementById("limpiar").style.display = "none";
+    }
+    function limpiar() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("descripcion").value = "";
+        document.getElementById("detalles").value = "";
+        document.getElementById("precio").value = "";
+        document.getElementById("material").options[0].selected = true;
+        document.getElementById("tipo_producto").options[0].selected = true;
+    }
+</script>
+
+</html>
