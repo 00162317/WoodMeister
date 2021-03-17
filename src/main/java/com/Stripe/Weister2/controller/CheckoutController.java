@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.Stripe.Weister2.domain.ChargeRequest;
 
 
-
-
-
-
-
 @Controller
 public class CheckoutController {
 
