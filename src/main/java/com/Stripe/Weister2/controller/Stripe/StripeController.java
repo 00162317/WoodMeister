@@ -1,4 +1,4 @@
-package com.Stripe.Weister2.controller;
+package com.Stripe.Weister2.controller.Stripe;
 
 import java.security.InvalidAlgorithmParameterException;
 

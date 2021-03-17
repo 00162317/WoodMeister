@@ -1,4 +1,4 @@
-package com.Stripe.Weister2.controller;
+package com.Stripe.Weister2.controller.Stripe;
 
 
 import org.springframework.beans.factory.annotation.Value;
