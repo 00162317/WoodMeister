@@ -43,16 +43,28 @@
                                             </th:block>
                                         </tbody>
                                     </table>
-                                    $
-                                    <th class="fs-6" th:text="${pro}" />
+                                    <!--$
+                                    <th class="fs-6" th:text="${pro}" />-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <form action='/charge' method='POST' id='checkout-form'>
+                    <input type='hidden' th:value='${amount*100}' name='amount' />
+                    <label>Price:<span th:text='${amount}' /></label>
+                    <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+                    <script src='https://checkout.stripe.com/checkout.js' class='stripe-button' th:attr='data-key=${stripePublicKey}, 
+                     data-amount=${amount}, 
+                     data-currency=${currency}' data-name='Baeldung' data-description='Spring course checkout'
+                        data-image='img/woodMeister.png'
+                        data-locale='auto' data-zip-code='false'>
+                        </script>
+                </form>
+               
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"> <a class="btn btn-primary"
-                            href="/carritoIdentificar">Finalizar compra</a></button>
+                    <button type="button" class="btn btn-primary"> <a class="btn btn-primary" href="/index">Finalizar
+                            compra</a></button>
                 </div>
             </div>
         </div>

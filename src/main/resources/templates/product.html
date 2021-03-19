@@ -115,6 +115,11 @@
                                     <p></p>
                                     <label th:text="'Material: '+${producto.material.nombre_material}"></label>
                                     <p></p>
+                                    
+                                    <!--<button type="button" class="btn btn-primary" th:onclick ="'pruebaObtenerId('+${producto.id_producto}+')'">
+                                        Agregar a carrito
+                                    </button>-->
+
                                     <button type="button" class="btn btn-primary" th:onclick ="'obtenerIdsC('+${producto.id_producto}+')'">
                                         Agregar a carrito
                                     </button>

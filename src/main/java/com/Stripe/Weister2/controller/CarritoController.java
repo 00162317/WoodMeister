@@ -1,4 +1,5 @@
 package com.Stripe.Weister2.controller;
+import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,12 +9,14 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.SessionAttributeMethodArgumentResolver;
 
 import com.Stripe.Weister2.Utils.Utils;
+import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.Producto;
+import com.Stripe.Weister2.domain.ChargeRequest.Currency;
 import com.Stripe.Weister2.service.*;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 
 
 
@@ -34,6 +41,11 @@ public class CarritoController {
 	@Autowired
 	ProductoService ProductoService;
 	
+	@Autowired
+    private StripeService paymentsService;
+	
+	@Value("${STRIPE_PUBLIC_KEY}")
+    private String stripePublicKey;
 	
 	
 	//---------------------------------------------------------------------------------------------
@@ -75,7 +87,14 @@ public class CarritoController {
 			p2.add(producto);
 			
 			request.getSession().setAttribute("myCart", p2);
-			Double pro = Utils.calcularTotal(producto,p2);
+			Integer pro = Utils.calcularTotal(producto,p2);
+			
+			//Stripe
+			mav.addObject("amount", pro);
+			mav.addObject("stripePublicKey", stripePublicKey);
+			mav.addObject("currency", ChargeRequest.Currency.USD);
+			//mav.setViewName("checkout");
+			
 			
 			mav.addObject("producto",p2);
 			mav.addObject("pro", pro);
@@ -83,6 +102,7 @@ public class CarritoController {
 			
 			return mav;
 		}
+		
 		
 
 		

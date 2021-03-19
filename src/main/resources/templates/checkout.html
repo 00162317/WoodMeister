@@ -34,6 +34,29 @@
 </head>
 
 <body>
+
+
+  <div>
+    <th:block th:each="producto, row:${producto}">
+      <div id="prod" th:onclick="'obtenerIds('+${producto.id_producto}+')'">
+        <input type="hidden" th:value="${producto.id_producto}" id="id">
+        <div>
+
+          <div>
+            <h5>
+              <label for=""><th th:text="${producto.nombre}" /></label>
+            </h5>
+            <p>
+              $
+              <label for=""><th th:text="${producto.precio}" /></label>
+            </p>
+          </div>
+          <label for=""><th  th:text="${pro}" /></label>
+        </div>
+      </div>
+    </th:block>
+  </div>
+
   <h1>PRUEBA </h1>
   <form action='/charge' method='POST' id='checkout-form'>
     <input type='hidden' th:value='${amount}' name='amount' />

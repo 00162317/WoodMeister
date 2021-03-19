@@ -26,9 +26,9 @@ public class Utils {
 	      return p2;
 	   }
 	
-		public static Double calcularTotal(Producto producto, List<Producto> p2) {
+		public static Integer calcularTotal(Producto producto, List<Producto> p2) {
 			
-			double precio = 0;
+			Integer precio = 0;
 			
 			for(int i = 0; i<p2.size();i++) {
 			
