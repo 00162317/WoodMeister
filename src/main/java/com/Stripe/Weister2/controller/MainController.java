@@ -147,7 +147,13 @@ public class MainController {
 		return mav;
 	}
 
-	
+	@RequestMapping("/tracking")
+	public ModelAndView tracking() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tracking");
+		return mav;
+	}
+
 
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam Integer id) {
