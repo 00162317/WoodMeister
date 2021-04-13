@@ -71,6 +71,19 @@ public class CarritoController {
 			return "redirect:/ShowCarrito";
 		}
 		
+		@RequestMapping("/eliminarDelCarrito")
+		public String eliminarDeCarrito(@RequestParam Integer id, HttpServletRequest request) {
+			List<Producto> p2 = Utils.getCartInSession(request);
+			List<Producto> p3 = new ArrayList<>();	
+			
+			p3 = Utils.EliminarDelCarrito(p2, id);
+			
+			request.getSession().setAttribute("myCart", p3);
+		
+			
+			return "redirect:/ShowCarrito";
+		}
+		
 		@RequestMapping("/ShowCarrito")
 		public ModelAndView showCarrito(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
@@ -92,7 +105,7 @@ public class CarritoController {
 		}
 		
 
-		
+	
 		@RequestMapping("/carritoIdentificar")
 		public ModelAndView carritoIdentificar() {
 			ModelAndView mav = new ModelAndView();

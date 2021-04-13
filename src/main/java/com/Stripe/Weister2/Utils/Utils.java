@@ -36,4 +36,15 @@ public class Utils {
 
 		return precio;
 	}
+	
+	public static List<Producto> EliminarDelCarrito(List<Producto> p3, int id) {
+
+		for (int i = 0; i < p3.size(); i++) {
+			if(id== p3.get(i).getId_producto()) {
+			 p3.remove(i);
+			}
+		}
+		return p3;
+		}
+ 
 }

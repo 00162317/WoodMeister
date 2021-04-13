@@ -23,6 +23,8 @@
     <!--ALLfont.es-->
     <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
     <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+    
+    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -49,10 +51,11 @@
                     </div>
                     <div>		                        
 		              <th:block th:each="producto, row:${producto}">
-						<div class="col-md-3 col-sm  produc" id="prod" th:onclick ="'obtenerIds('+${producto.id_producto}+')'">
-							<input type="hidden" th:value="${producto.id_producto}" id="id">
+						<div class="col-md-3 col-sm  produc" id="prod" th:onclick ="'eliminar('+${producto.id_producto}+')'">
+							<input type="hidden" >
 							<div class="card mb-3 text-center">
-								
+								<div> <i class="fas fa-times" th:onclick ="'obtenerIds('+${producto.id_producto}+')'"></i> </div>
+							
 								<div class="card-body">
 									<h5 class="card-title">
 										<th th:text="${producto.nombre}" />
@@ -60,11 +63,7 @@
 									<p class="card-text">
 										$
 										<th th:text="${producto.precio}" />
-									</p>
-									<p class="card-text">
-										$
-										<th th:text="${producto.id_producto}" />
-									</p>
+									
 								</div>
 							</div>
 						</div>
