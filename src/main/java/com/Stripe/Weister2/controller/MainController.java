@@ -158,14 +158,31 @@ public class MainController {
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
+		
 		List<Imagen> img = null;
+		List<sliderDTO> slider = null;
+		List<sliderDTO> producto2 = new ArrayList<>();
 		
 		Producto producto = ProductoService.findOne(id);
 		
 		try {
 			img = ImagenService.findImagenes(id);
+			
+			slider = ProductoService.dtoPrueba();
+			int aux = 0;
+			int flag = 0;
+			
+			for (sliderDTO sliderDTO : slider) {
+					if (aux == 0 || aux != sliderDTO.getId_producto()) {
+						producto2.add(sliderDTO);
+						System.out.print(sliderDTO.getId_producto());
+						aux = sliderDTO.getId_producto();
+					}
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		
@@ -173,7 +190,9 @@ public class MainController {
 		
 		mav.addObject("img", img);
 		mav.addObject("producto",producto);
+		mav.addObject("producto2", producto2);
 		mav.setViewName("product");
+		
 		return mav;
 	}
 	
