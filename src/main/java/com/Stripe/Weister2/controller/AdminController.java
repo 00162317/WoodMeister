@@ -75,7 +75,7 @@ public class AdminController {
 		return mav;
 	}
 
-	@RequestMapping("/eliminar")
+	@RequestMapping("/adminEliminar")
 	public ModelAndView eliminar() {
 		ModelAndView mav = new ModelAndView();
 		
@@ -99,7 +99,7 @@ public class AdminController {
 		return mav;
 	}
 
-	@RequestMapping("/modificar")
+	@RequestMapping("/adminModificar")
 	public ModelAndView modificar() {
 		ModelAndView mav = new ModelAndView();		
 		mav.setViewName("AdminModificar");
@@ -108,14 +108,14 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- Views Material
 	
-	@RequestMapping("/mostrarMaterial")
+	@RequestMapping("/adminMostrarMaterial")
 	public ModelAndView mostrarMaterial() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("AdminMaterial");
 		return mav;
 	}
 	
-	@RequestMapping("/agregarMaterial")
+	@RequestMapping("/adminAgregarMaterial")
 	public ModelAndView agregarMaterial(@ModelAttribute Material material) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("AdminAddMaterial");
@@ -124,14 +124,14 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- Views Tipo Producto
 	
-	@RequestMapping("/mostrarTproducto")
+	@RequestMapping("/adminMostrarTproducto")
 	public ModelAndView mostrarTproducto() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("AdminTProducto");
 		return mav;
 	}
 	
-	@RequestMapping("/agregarTipoProducto")
+	@RequestMapping("/adminAgregarTipoProducto")
 	public ModelAndView agregarTipoProducto(@ModelAttribute TipoProducto tipoProducto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("AdminAddTproducto");
@@ -140,7 +140,7 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- CRUD PRODUCTO
 	
-	@RequestMapping("/ingresarProducto")
+	@RequestMapping("/adminIngresarProducto")
 	public ModelAndView ingresarProducto(@ModelAttribute Producto producto) {
 
 		ModelAndView mav = new ModelAndView();
@@ -165,7 +165,7 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping("/editarProducto")
+	@RequestMapping("/adminEditarProducto")
 	public ModelAndView editar(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		List<Material> listaMaterial = null;
@@ -188,7 +188,7 @@ public class AdminController {
 
 	}
 	
-	@RequestMapping("/eliminarProducto")
+	@RequestMapping("/adminEliminarProducto")
 	public ModelAndView eliminar(@ModelAttribute Producto producto, @RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -210,7 +210,7 @@ public class AdminController {
 
 	//--------------------------------------------------------------- CRUD MATERIAL
 	
-	@RequestMapping("/ingresarMaterial")
+	@RequestMapping("/adminIngresarMaterial")
 	public ModelAndView ingresarMaterial(@ModelAttribute Material material) {
 
 		ModelAndView mav = new ModelAndView();
@@ -222,7 +222,7 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping("/editarMaterial")
+	@RequestMapping("/adminEditarMaterial")
 	public ModelAndView editarMaterial(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 			
@@ -236,7 +236,7 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- CRUD TIPO PRODUCTO
 	
-	@RequestMapping("/ingresarTipoProducto")
+	@RequestMapping("/adminIngresarTipoProducto")
 	public ModelAndView ingresarTipoProducto(@ModelAttribute TipoProducto tipoProducto) {
 
 		ModelAndView mav = new ModelAndView();
@@ -254,7 +254,7 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping("/editarTipoProducto")
+	@RequestMapping("/adminEditarTipoProducto")
 	public ModelAndView editarTipoProducto(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 			
@@ -269,7 +269,7 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- Pageable Producto
 	
-	@RequestMapping("/cargarProductos")
+	@RequestMapping("/adminCargarProductos")
 	public @ResponseBody TablaDTO cargar(@RequestParam Integer draw, @RequestParam Integer start,
 			@RequestParam Integer length, @RequestParam(value="search[value]",required =false) String search) {
 		
@@ -299,7 +299,7 @@ public class AdminController {
 
 	//--------------------------------------------------------------- Pageable Material
 	
-	@RequestMapping("/cargarMaterial")
+	@RequestMapping("/adminCargarMaterial")
 	public @ResponseBody TablaDTO cargarMaterial(@RequestParam Integer draw, @RequestParam Integer start,
 			@RequestParam Integer length, @RequestParam(value="search[value]",required =false) String search) {
 		
@@ -327,7 +327,7 @@ public class AdminController {
 	}
 	//--------------------------------------------------------------- Pageable Tipo Producto
 	
-	@RequestMapping("/cargarTipoProducto")
+	@RequestMapping("/adminCargarTipoProducto")
 	public @ResponseBody TablaDTO cargarTipoProducto(@RequestParam Integer draw, @RequestParam Integer start,
 			@RequestParam Integer length, @RequestParam(value="search[value]",required =false) String search) {
 		
