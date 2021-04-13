@@ -208,11 +208,14 @@ public class MainController {
 
 			listaSexo = SexoService.findAll();
 			listaTusuario = TipoUsuarioService.findAll();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		
+		usuario.setRol("ROLE_USER");
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("listaTusuario", listaTusuario);
 		mav.setViewName("register");
