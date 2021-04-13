@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	UsuarioRepo Repo;
 	
-	/*@Autowired
+	@Autowired
 	PasswordEncoder passwordEncoder;
-	*/
+	
 	@PersistenceContext(unitName = "Weister2")
 	EntityManager entityManager;
 	
@@ -36,7 +37,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public void insertAndUpdate(Usuario c) throws DataAccessException {
 		// TODO Auto-generated method stub
-		//c.setPassword(passwordEncoder.encode(c.getPassword()));
+		c.setPassword(passwordEncoder.encode(c.getPassword()));
 		
 		Repo.save(c);
 

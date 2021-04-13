@@ -31,6 +31,7 @@ public class Utils {
 
 		for (int i = 0; i < p2.size(); i++) {
 			precio += p2.get(i).getPrecio();
+			
 		}
 
 		return precio;
