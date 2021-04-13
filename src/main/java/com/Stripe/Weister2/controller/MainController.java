@@ -214,7 +214,7 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		
+		usuario.setFkTipo_usuario(1);
 		usuario.setRol("ROLE_USER");
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("listaTusuario", listaTusuario);

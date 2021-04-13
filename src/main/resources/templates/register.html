@@ -70,24 +70,10 @@
                                         th:text="${item.nombre}">
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label" >Tipo Usuario</label>
-                            <select id="tipoUsuario" th:field="${usuario.tipo_usuario}">
-                                <option value="0">Seleccione una opcion</option>
-                                <option th:each=item:${listaTusuario}
-                                        th:value="${item.id_tipo_usuario}"
-                                        th:text="${item.nombre}">
-                            </select>
-                        </div>
                          <div class="mb-3">
                             <input id="nombre" type="hidden" th:field="${usuario.rol}" name="nombre" class="form-control">
                         </div>
                         
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Acepto los <a
-                                    href="https://www.google.com">terminos</a> y condiciones</label>
-                        </div>
                         <button type="submit" class="btn btn-primary"><!--
                             a id="limpiar">Registrar</a>
                         -->Reistrar
