@@ -25,13 +25,12 @@ public class Utils {
 		}
 	}
 
-	public static Integer calcularTotal(Producto producto, List<Producto> p2) {
+	public static Integer calcularTotal( List<Producto> p2) {
 
 		Integer precio = 0;
 
 		for (int i = 0; i < p2.size(); i++) {
-
-			precio += producto.getPrecio();
+			precio += p2.get(i).getPrecio();
 		}
 
 		return precio;

@@ -56,53 +56,40 @@ public class CarritoController {
 			mav.setViewName("carritoRegistro");
 			return mav;
 		}
-/*
+
+	
+		/*a;adir al carrito sin necesidad de tener sesion*/
 		@RequestMapping("/Shop")
-		public ModelAndView addcarrito(@RequestParam Integer id, HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView();
-			List<Producto> pr = new ArrayList<>();
-			request.getAttribute("producto");
-			if(request.getAttribute("producto")==null) {
-				
-			}
-			
-			Producto producto = ProductoService.findOne(id);
-			pr.add(producto);
-			request.setAttribute("producto", pr);
-			
-			List<Producto> p2 = (List<Producto>) request.getAttribute("producto");	 
-		
-		 
-			mav.addObject("producto",p2);
-			mav.setViewName("carritoRegistro");
-			return mav;
-		}*/
-		
-		@RequestMapping("/Shop")
-		public ModelAndView addcarrito(@RequestParam Integer id, HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView();
+		public String addcarrito(@RequestParam Integer id, HttpServletRequest request) {
 			List<Producto> p2 = Utils.getCartInSession(request);
 			Producto producto = new Producto();
 			producto = ProductoService.findOne(id);
 			p2.add(producto);
-			
 			request.getSession().setAttribute("myCart", p2);
-			Integer pro = Utils.calcularTotal(producto,p2);
+		
 			
+			return "redirect:/ShowCarrito";
+		}
+		
+		@RequestMapping("/ShowCarrito")
+		public ModelAndView showCarrito(HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView();
+			List<Producto> p2 = Utils.getCartInSession(request);
+		
+			request.getSession().setAttribute("myCart", p2);
+			Integer pro = Utils.calcularTotal(p2);
 			//Stripe
 			mav.addObject("amount", pro);
 			mav.addObject("stripePublicKey", stripePublicKey);
 			mav.addObject("currency", ChargeRequest.Currency.USD);
 			//mav.setViewName("checkout");
 			
-			
-			mav.addObject("producto",p2);
 			mav.addObject("pro", pro);
+			mav.addObject("producto",p2);
 			mav.setViewName("carritoRegistro");
 			
 			return mav;
 		}
-		
 		
 
 		
