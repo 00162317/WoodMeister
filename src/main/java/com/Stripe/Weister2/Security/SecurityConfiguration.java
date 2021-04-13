@@ -53,13 +53,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	                .antMatchers("/admin**").hasRole("ADMIN")
 	               .and()  
                 .formLogin()
-	                .loginPage("/login").permitAll(false)
+	                .loginPage("/login")
+	                .usernameParameter("email")
+	                .permitAll(false)
 	                .defaultSuccessUrl("/usu", true)
 	                .and()
 	                .csrf().ignoringAntMatchers("/checkout")
 	                .ignoringAntMatchers("/charge")
 	                .and()
-	                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").
+	                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").
 	                and()
 	             .sessionManagement()                          // 2
 			       	.maximumSessions(1) 

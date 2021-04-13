@@ -53,7 +53,11 @@
 		Estas son tus ordenes
 	</h1>
 	</div>
-	
+	<span sec:authorize="!isAuthenticated()">Bob</span>
+	 <div sec:authorize="!isAuthenticated()">
+        Text visible only to authenticated users.
+    </div>
+
 
 	</main>
 	<th:block th:include="/block/footer"></th:block>

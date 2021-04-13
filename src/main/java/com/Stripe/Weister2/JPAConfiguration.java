@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.Stripe.Weister2.repositorie")
@@ -26,7 +27,10 @@ public class JPAConfiguration {
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
-	
+	@Bean
+	public SpringSecurityDialect securityDialect() {
+	    return new SpringSecurityDialect();
+	}
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

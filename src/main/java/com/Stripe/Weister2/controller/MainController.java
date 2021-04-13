@@ -224,18 +224,28 @@ public class MainController {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping("/ingresarUsuario")
-	public ModelAndView ingresarUsuario(@RequestParam("pass") String pass, @ModelAttribute Usuario usuario) {
+	public ModelAndView ingresarUsuario(@RequestParam("pass") String pass,@RequestParam("nombre") String nombre, @ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
 
 		Usuario usuarioUno = new Usuario();
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
-
+		List<Usuario> usuarioList = null;
+		
+		
 		try {
-
+			usuarioList =UsuarioService.findAll();
 			listaSexo = SexoService.findAll();
 			listaTusuario = TipoUsuarioService.findAll();
+			for (Usuario Usuario : usuarioList) {
+				if(Usuario.getNombre()== nombre) {
+					System.out.print("YA EXISTE");
 
+				}
+					
+			System.out.print(Usuario.getNombre());
+				
+		}
 			if (usuario.getPassword().equals(pass)) {
 				UsuarioService.insertAndUpdate(usuario);
 
@@ -246,6 +256,8 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	
 
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("listaTusuario", listaTusuario);

@@ -16,4 +16,6 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Integer>{
 	public List<Usuario> mostrarTodo() throws DataAccessException;
 	
 	Optional<Usuario> findByNombre(String username);
+	Optional<Usuario> findByEmail(String email);
+
 }

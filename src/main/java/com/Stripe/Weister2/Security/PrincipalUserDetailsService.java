@@ -22,7 +22,7 @@ public class PrincipalUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		Optional<Usuario> cuenta = UsuarioService.findByNombre(username);
+		Optional<Usuario> cuenta = UsuarioService.findByEmail(username);
 		 cuenta.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
 		 return cuenta.map(PrincipalUserDetails::new).get();
 	}

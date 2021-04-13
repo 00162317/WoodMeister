@@ -55,4 +55,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return Repo.findByNombre(username);
 	}
 
+	@Override
+	public Optional<Usuario> findByEmail(String email) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return Repo.findByEmail(email);
+	}
+
 }

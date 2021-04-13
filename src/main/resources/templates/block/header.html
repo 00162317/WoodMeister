@@ -1,5 +1,5 @@
 <header>
-       <!--NAVBAR-->
+	<!--NAVBAR-->
 	<nav class=" navbar navbar-default navbar-expand-md navbar-light ms-a"
 		style="background-color: #192537;">
 		<div class="container-fluid">
@@ -13,14 +13,24 @@
 			</button>
 			<div class="collapse navbar-collapse " id="navbarNavAltMarkup">
 				<ul class="navbar-nav ms-auto pe-5">
-					
+					<li class="dropdownown " sec:authorize="isAuthenticated()">
+					<a class="navown px-2 " href="#" sec:authentication="name"></a>
+						<div class="dropown-content">
+							<div>
+								<a class="navown" href="/logout">LOGOUT</a>
+							</div>
+							</li>
+
 					<li><a class="navown px-2" href="/about">ABOUT US</a></li>
 					<li><a class="navown px-2" href="/usu">TRACKING</a></li>
-					<li sec:authorize="!isAuthenticated()"><a class="navown px-2" th:href="@{/login}">SING IN</a></li>
+					<li sec:authorize="!isAuthenticated()"><a class="navown px-2"
+						th:href="@{/login}">SING IN</a></li>
 					<li><a class="navown px-2" href="/ShowCarrito">SHOP<i
 							class="fas fa-shopping-cart ps-2"></i></a></li>
+
+
 				</ul>
 			</div>
 		</div>
 	</nav>
-    </header>
+</header>
