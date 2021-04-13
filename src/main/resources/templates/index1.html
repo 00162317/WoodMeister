@@ -85,6 +85,100 @@
 				</div>
 			</section>
 
+
+			<div class="container">
+				<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+					<div class="col">
+						<div class="p-3 border bg-light">
+							<div class="fotoProducto">
+								<img src="https://www.superherodb.com//pictures2//portraits//10//100//52.jpg"
+									class="productsCards card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">
+									Hola
+								</h5>
+								<p class="card-text">
+									Buenas
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="p-3 border bg-light">
+							<div class="fotoProducto">
+								<img src="https://www.superherodb.com//pictures2//portraits//10//100//52.jpg"
+									class="productsCards card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">
+									Hola
+								</h5>
+								<p class="card-text">
+									Buenas
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="p-3 border bg-light">
+							<div class="fotoProducto">
+								<img src="https://www.superherodb.com//pictures2//portraits//10//100//52.jpg"
+									class="productsCards card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">
+									Hola
+								</h5>
+								<p class="card-text">
+									Buenas
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<th:block th:each="producto, row:${producto}">
+				<div class="container">
+					<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+						<div class="col">
+							<div class="p-3 border bg-light">
+								<div class="containerNuiw"
+									th:style="'background-image:url(' + @{${'img/'+ producto.nombreImagen }} + ');'">
+									<div class="overlayNiuw">
+										<div class="items"></div>
+										<div class="items head">
+											<p>
+												<th th:text="${producto.nombre}" />
+											</p>
+											<hr>
+										</div>
+										<div class="items price">
+											<p class="old">
+												<th th:text="${producto.precio - 50}" />
+											</p>
+											<p class="new">
+												<th th:text="${producto.precio}" />
+											</p>
+										</div>
+										<div class="items cart" th:onclick="'obtenerIds('+${producto.id_producto}+')'">
+											<input type="hidden" th:value="${producto.id_producto}" id="id">
+											<i class="fa fa-shopping-cart"></i>
+											<span>ADD TO CART</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+
+
+
+
+
 			<th:block th:each="producto, row:${producto}">
 				<div class="containerNuiw"
 					th:style="'background-image:url(' + @{${'img/'+ producto.nombreImagen }} + ');'">
