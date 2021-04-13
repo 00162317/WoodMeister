@@ -47,14 +47,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 	.antMatchers("/checkout").permitAll()
                 	.antMatchers("/charge").permitAll()
                 	.antMatchers("/login**").anonymous()
-	                .antMatchers("/regi").anonymous()
+	                .antMatchers("/usu").authenticated()
 	                .antMatchers("/tracking").hasAnyRole("USER", "ADMIN")
 	                .antMatchers("/api/**").permitAll()
 	                .antMatchers("/admin**").hasRole("ADMIN")
 	               .and()  
                 .formLogin()
 	                .loginPage("/login").permitAll(false)
-	                .defaultSuccessUrl("/index", true)
+	                .defaultSuccessUrl("/usu", true)
 	                .and()
 	                .csrf().ignoringAntMatchers("/checkout")
 	                .ignoringAntMatchers("/charge")
@@ -102,4 +102,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             return true;
         }
     }
+   
 }

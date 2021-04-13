@@ -1,4 +1,4 @@
-<header xmlns:th="http://www.thymeleaf.org">
+<header>
        <!--NAVBAR-->
 	<nav class=" navbar navbar-default navbar-expand-md navbar-light ms-a"
 		style="background-color: #192537;">
@@ -13,9 +13,10 @@
 			</button>
 			<div class="collapse navbar-collapse " id="navbarNavAltMarkup">
 				<ul class="navbar-nav ms-auto pe-5">
+					
 					<li><a class="navown px-2" href="/about">ABOUT US</a></li>
-					<li><a class="navown px-2" href="/tracking">TRACKING</a></li>
-					<li><a class="navown px-2" href="/login">SING IN</a></li>
+					<li><a class="navown px-2" href="/usu">TRACKING</a></li>
+					<li sec:authorize="!isAuthenticated()"><a class="navown px-2" th:href="@{/login}">SING IN</a></li>
 					<li><a class="navown px-2" href="/ShowCarrito">SHOP<i
 							class="fas fa-shopping-cart ps-2"></i></a></li>
 				</ul>

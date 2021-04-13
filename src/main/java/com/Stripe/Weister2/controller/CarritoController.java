@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -117,6 +118,23 @@ public class CarritoController {
 		public ModelAndView carritoPago() {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("carritoPago");
+			return mav;
+		}
+		
+		@RequestMapping("/usu")
+		public ModelAndView usu(Authentication auth) {
+			ModelAndView mav = new ModelAndView();
+			String name =auth.getName();
+			
+			if(name != null) {
+				mav.addObject("name",name);
+				
+			}else {
+				String cor = "queso";
+				mav.addObject("name",cor);
+			}
+			
+			mav.setViewName("tracking");
 			return mav;
 		}
 
