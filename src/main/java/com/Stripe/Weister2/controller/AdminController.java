@@ -43,7 +43,7 @@ public class AdminController {
 
 	
 	
-	@RequestMapping("/registro")
+	@RequestMapping("/adminRegistro")
 	public ModelAndView registro() {
 		ModelAndView mav = new ModelAndView();
 		
@@ -53,7 +53,7 @@ public class AdminController {
 //--------------------------------------------------------------- Views Producto
 	
 	
-	@RequestMapping("/agregar")
+	@RequestMapping("/adminAgregar")
 	public ModelAndView agregar(@ModelAttribute Producto producto) {
 		ModelAndView mav = new ModelAndView();
 
