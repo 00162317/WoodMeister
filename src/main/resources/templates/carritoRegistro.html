@@ -1,61 +1,100 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de compras</title>
-    <!--Boostrap  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <!--Boostrap Script  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <!--animate css  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito de compras</title>
+<!--Boostrap  -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+<!--Boostrap Script  -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+	crossorigin="anonymous"></script>
+<!--animate css  -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    <!--Own Styles  -->
-    <link rel="stylesheet" href="css/cstyle.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
-    <!--ALLfont.es-->
-    <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
-    <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
-    
-    <script src="js/main.js"></script>
+<!--Own Styles  -->
+<link rel="stylesheet" href="css/cstyle.css">
+<link rel="stylesheet" href="css/estilo.css">
+<!--Font Awesome-->
+<script src="https://kit.fontawesome.com/f2dde07271.js"
+	crossorigin="anonymous"></script>
+<!--ALLfont.es-->
+<link href="https://allfont.es/allfont.css?fonts=montserrat-light"
+	rel="stylesheet" type="text/css" />
+<link href="https://allfont.es/allfont.css?fonts=playfair-display"
+	rel="stylesheet" type="text/css" />
+
+<script src="js/main.js"></script>
 </head>
 
 <body>
 
-    <th:block th:include="/block/header"></th:block>
+	<th:block th:include="/block/header"></th:block>
 
-    <div class="containter">
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-10">
-                <div class="text-center">
-                    <h1>Carrito de compras</h1>
-                    <div>
-                        <ul class="nav justify-content-end fixUl">
-                            <li class="nav-item carritoNav">
-                                <p class="nav-link carritoNavLetra">1. Revisar carrito</p>
-                            </li>
-                            <li class="nav-item carritoNav2">
-                                <p class="nav-link ">2. Identificacion</p>
-                            </li>
-                            <li class="nav-item carritoNav2">
-                                <p class="nav-link ">3. Entrega y pago</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>		                        
-		              <th:block th:each="producto, row:${producto}">
-						<div class="col-md-3 col-sm  produc" id="prod" th:onclick ="'eliminar('+${producto.id_producto}+')'">
-							<input type="hidden" >
+	<div class="containter">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-10">
+				<div class="text-center">
+					<h1>Carrito de compras</h1>
+					<div>
+						<ul class="nav justify-content-center mt-5 mr-5 ml-5">
+							<li class="nav-item carritoNav">
+								<p class="nav-link carritoNavLetra">1. Revisar carrito</p>
+							</li>
+							<li class="nav-item carritoNav2">
+								<p class="nav-link ">2. Identificacion</p>
+							</li>
+							<li class="nav-item carritoNav2">
+								<p class="nav-link ">3. Entrega y pago</p>
+							</li>
+						</ul>
+					</div>
+
+					<div class="carritoVacio"
+						th:if="${producto==null or producto.empty}">
+						<h1>Carrito vacio</h1>
+						<div>
+							<i class="fas fa-cart-arrow-down cars"></i>
+						</div>
+						<h3>Intenta agregando productos antes de tu compra</h3>
+					</div>
+					<div>
+					<th:block th:each="producto, row:${producto}">
+						<div class="card mb-3" style="max-width: 540px;">
+							<div class="row g-0">
+								<div class="col-md-4" >
+									<img class="product-image"
+                        th:src="@{|/imagen?id=${producto.id_producto}|}" />
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h5 class="card-title"> <th th:text="${producto.nombre}" /></h5>
+										<p class="card-text"> <th th:text="${producto.nombre}" /></p>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						</th:block>
+					</div>
+					<th:block th:each="producto, row:${producto}">
+						<div class="col-md-3 col-sm  produc" id="prod"
+							th:onclick="'eliminar('+${producto.id_producto}+')'">
+							<input type="hidden">
 							<div class="card mb-3 text-center">
-								<div> <i class="fas fa-times" th:onclick ="'obtenerIds('+${producto.id_producto}+')'"></i> </div>
-							
+								<div>
+									<i class="fas fa-times"
+										th:onclick="'obtenerIds('+${producto.id_producto}+')'"></i>
+								</div>
+
 								<div class="card-body">
 									<h5 class="card-title">
 										<th th:text="${producto.nombre}" />
@@ -63,26 +102,25 @@
 									<p class="card-text">
 										$
 										<th th:text="${producto.precio}" />
-									
 								</div>
 							</div>
 						</div>
 					</th:block>
-                 </div>
-                    <div>
-                        <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Total de compra
-                            </button>
-                        </div>
-                    </div>
-                    <th:block th:include="/block/carritoModal"></th:block>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+				<div>
+					<div sec:authorize="isAuthenticated()">
+						<button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Total de compra</button>
+					</div>
+				</div>
+				<th:block th:include="/block/carritoModal"></th:block>
+			</div>
+		</div>
+	</div>
+	</div>
 
-    <th:block th:include="/block/footer"></th:block>
+	<th:block th:include="/block/footer"></th:block>
 
 </body>
 

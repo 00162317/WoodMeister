@@ -2,14 +2,19 @@ function obtenerIds(id) {
 		
 			let val1 = id
 			location.href = './product?id=' + val1;
-			alert("asasas")
 		
 	};
+	
+	
+function eliminar(id){
+	let val1 = id
+	location.href = './eliminarDelCarrito?id=' + val1;
+
+};
 	
 function obtenerIdsC(id){
 	let val1 = id
 	location.href = './Shop?id=' + val1;
-	alert("simon" + id)
 };
 
 (function (){
