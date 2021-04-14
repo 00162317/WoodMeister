@@ -70,9 +70,8 @@
 					<th:block th:each="producto, row:${producto}">
 						<div class="card mb-3" style="max-width: 540px;">
 							<div class="row g-0">
-								<div class="col-md-4" >
-									<img class="product-image"
-                        th:src="@{|/imagen?id=${producto.id_producto}|}" />
+								<div class="col-md-4 containerNuiw" th:style="'background-image:url(' + @{${'img/'+ producto.nombreImagen }} + ');'" >
+								
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
@@ -85,27 +84,7 @@
 						</div>
 						</th:block>
 					</div>
-					<th:block th:each="producto, row:${producto}">
-						<div class="col-md-3 col-sm  produc" id="prod"
-							th:onclick="'eliminar('+${producto.id_producto}+')'">
-							<input type="hidden">
-							<div class="card mb-3 text-center">
-								<div>
-									<i class="fas fa-times"
-										th:onclick="'obtenerIds('+${producto.id_producto}+')'"></i>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">
-										<th th:text="${producto.nombre}" />
-									</h5>
-									<p class="card-text">
-										$
-										<th th:text="${producto.precio}" />
-								</div>
-							</div>
-						</div>
-					</th:block>
+					
 				</div>
 				<div>
 					<div sec:authorize="isAuthenticated()">

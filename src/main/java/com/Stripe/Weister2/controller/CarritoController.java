@@ -29,6 +29,7 @@ import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.Producto;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
+import com.Stripe.Weister2.dto.sliderDTO;
 import com.Stripe.Weister2.service.*;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -61,23 +62,30 @@ public class CarritoController {
 	
 		/*a;adir al carrito sin necesidad de tener sesion*/
 		@RequestMapping("/Shop")
-		public String addcarrito(@RequestParam Integer id, HttpServletRequest request) {
-			List<Producto> p2 = Utils.getCartInSession(request);
-			Producto producto = new Producto();
-			producto = ProductoService.findOne(id);
-			p2.add(producto);
+		public String addcarrito2(@RequestParam Integer id, HttpServletRequest request) {
+			List<sliderDTO> p2 = Utils.getCartInSession2(request);
+			List<sliderDTO> slider = null;
+			List<sliderDTO> slider2 = new ArrayList<>();
+			
+			try {
+				slider = ProductoService.dtoPrueba2(id);
+				p2.add(slider.get(0));
+			
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			request.getSession().setAttribute("myCart", p2);
 		
 			
 			return "redirect:/ShowCarrito";
+			
 		}
-		
 		@RequestMapping("/eliminarDelCarrito")
 		public String eliminarDeCarrito(@RequestParam Integer id, HttpServletRequest request) {
-			List<Producto> p2 = Utils.getCartInSession(request);
-			List<Producto> p3 = new ArrayList<>();	
+			List<sliderDTO> p2 = Utils.getCartInSession2(request);
+			List<sliderDTO> p3 = new ArrayList<>();	
 			
-			p3 = Utils.EliminarDelCarrito(p2, id);
+			p3 = Utils.EliminarDelCarrito2(p2, id);
 			
 			request.getSession().setAttribute("myCart", p3);
 		
@@ -86,9 +94,9 @@ public class CarritoController {
 		}
 		
 		@RequestMapping("/ShowCarrito")
-		public ModelAndView showCarrito(HttpServletRequest request) {
+		public ModelAndView showCarrito2(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-			List<Producto> p2 = Utils.getCartInSession(request);
+			List<sliderDTO> p2 = Utils.getCartInSession2(request);
 		
 			request.getSession().setAttribute("myCart", p2);
 			Integer pro = Utils.calcularTotal(p2);
@@ -137,8 +145,6 @@ public class CarritoController {
 			mav.setViewName("tracking");
 			return mav;
 		}
-
-	//---------------------------------------------------------------------------------------------
 
 
 }

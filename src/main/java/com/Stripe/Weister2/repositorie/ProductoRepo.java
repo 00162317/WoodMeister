@@ -33,6 +33,10 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer> {
 			+ "where tp.id_tipo_producto=pro.fkTipoProducto and ma.id_material = pro.fkMaterial")
 	public Integer countProduct2(String code) throws DataAccessException;
 	
-
+	@Query(nativeQuery = true, 
+			value = " select p.id_producto, p.nombre, p.descripcion, p.precio, i.nombre as foto "
+					+ " from public.producto p, public.imagen i where p.id_producto = i.fkproducto 	 and p.id_producto = ?1  "
+					+ " order by p.id_producto asc limit 1 ")
+	public List<Object[]> sliderProducto2(Integer code) throws DataAccessException;
 	
 }

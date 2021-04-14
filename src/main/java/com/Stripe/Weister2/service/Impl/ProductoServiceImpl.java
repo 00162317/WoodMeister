@@ -84,4 +84,23 @@ public class ProductoServiceImpl implements ProductoService {
 		return Repo.getOne(code);
 	}
 
+	@Override
+	public List<sliderDTO> dtoPrueba2(Integer code) throws DataAccessException {
+		// TODO Auto-generated method stub
+		List<sliderDTO> slider = Repo.sliderProducto2(code).stream().map(obj -> {
+			sliderDTO e = new sliderDTO();
+
+			e.setId_producto(Integer.valueOf(obj[0].toString()));
+			e.setNombre(obj[1].toString());
+			e.setDescripcion(obj[2].toString());
+			e.setPrecio(Integer.valueOf(obj[3].toString()));
+			e.setNombreImagen(obj[4].toString());
+			aux = Integer.valueOf(obj[0].toString());
+			return e;
+		}).collect(Collectors.toList());
+		aux = 0;
+		System.out.print(slider.toString());
+		return slider;
+	}
+
 }

@@ -27,5 +27,7 @@ public interface ProductoService {
 	
 	public Producto findOne(Integer code) throws DataAccessException;
 	
+	public List<sliderDTO> dtoPrueba2(Integer code) throws DataAccessException;
+	
 	
 }
