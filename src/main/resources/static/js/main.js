@@ -1,29 +1,36 @@
+//href="https://wa.me/+50372682989/?text=Texto"
+
+const contactUs = () =>{
+    let val1 = document.getElementById("whats").value;
+    location.href='https://wa.me/+50360605555/?text='+val1;
+}
+
 function obtenerIds(id) {
-		
-			let val1 = id
-			location.href = './product?id=' + val1;
-		
-	};
-	
-	
-function eliminar(id){
-	let val1 = id
-	location.href = './eliminarDelCarrito?id=' + val1;
+
+    let val1 = id
+    location.href = './product?id=' + val1;
 
 };
-	
-function obtenerIdsC(id){
-	let val1 = id
-	location.href = './Shop?id=' + val1;
+
+
+function eliminar(id) {
+    let val1 = id
+    location.href = './eliminarDelCarrito?id=' + val1;
+
 };
 
-(function (){
+function obtenerIdsC(id) {
+    let val1 = id
+    location.href = './Shop?id=' + val1;
+};
 
-    var indexSlider = function(){
-        
-        $('#flexcontainer .flexslider .slides > li').css('height', $(window).height());	
-        $(window).resize(function(){
-            $('#flexcontainer .flexslider .slides > li').css('height', $(window).height());	
+(function () {
+
+    var indexSlider = function () {
+
+        $('#flexcontainer .flexslider .slides > li').css('height', $(window).height());
+        $(window).resize(function () {
+            $('#flexcontainer .flexslider .slides > li').css('height', $(window).height());
         });
 
         $(window).load(function () {
@@ -32,36 +39,36 @@ function obtenerIdsC(id){
 
     };
 
-    $(function(){
+    $(function () {
         indexSlider();
 
     });
 
 }());
 
-const datosTabla = (tabla, mensaje, rutaBtn, extra)=>{
-    $(document).ready(function(){
-		var table = $('#tabla').DataTable( {
-			"ordering": false,
-	        "processing": true,
-	        "serverSide": true,
-	        "ajax": tabla,
-	        "language": {
-	            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-	        },
-	        "pageLength": 5,
-	        "columnDefs": [ {
-	            "targets": 0,
-	            "data": null,
-	            "searchable": false,
-	            "defaultContent": "<button class='btn btn-info' title='"+mensaje+"' id='i'><i class='fa fa-pencil-alt'></i></button>"
-	        }]
-	    });
-		$('#tabla tbody').on( 'click', '#i', function () {
-	        var data = table.row( $(this).parents('tr') ).data();
-	        	location.href = './'+rutaBtn+'?id=' + data[0] + extra;
-	    } );
-	});
+const datosTabla = (tabla, mensaje, rutaBtn, extra) => {
+    $(document).ready(function () {
+        var table = $('#tabla').DataTable({
+            "ordering": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": tabla,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            "pageLength": 5,
+            "columnDefs": [{
+                "targets": 0,
+                "data": null,
+                "searchable": false,
+                "defaultContent": "<button class='btn btn-info' title='" + mensaje + "' id='i'><i class='fa fa-pencil-alt'></i></button>"
+            }]
+        });
+        $('#tabla tbody').on('click', '#i', function () {
+            var data = table.row($(this).parents('tr')).data();
+            location.href = './' + rutaBtn + '?id=' + data[0] + extra;
+        });
+    });
 }
 
 const mostrarTabla = (tabla) => {
@@ -70,33 +77,33 @@ const mostrarTabla = (tabla) => {
     var rutaBtn;
     var extra;
 
-    switch(tabla){
-        case 1: 
-            ruta="/cargarProductos";
-            mensaje="Editar producto";
-            rutaBtn="./editarProducto";
-            extra="";
+    switch (tabla) {
+        case 1:
+            ruta = "/cargarProductos";
+            mensaje = "Editar producto";
+            rutaBtn = "./editarProducto";
+            extra = "";
             break;
 
         case 2:
-            ruta="/cargarProductos";
-            mensaje="Eliminar producto";
-            rutaBtn="./eliminarProducto";
-            extra="";
+            ruta = "/cargarProductos";
+            mensaje = "Eliminar producto";
+            rutaBtn = "./eliminarProducto";
+            extra = "";
             break;
         case 3:
-            ruta="/cargarMaterial";
-            mensaje="Editar material";
-            rutaBtn="./editarMaterial";
-            extra="";
+            ruta = "/cargarMaterial";
+            mensaje = "Editar material";
+            rutaBtn = "./editarMaterial";
+            extra = "";
             break;
         case 4:
-            ruta="/cargarTipoProducto";
-            mensaje="Editar tipo producto";
-            rutaBtn="./editarTipoProducto";
-            extra="";
+            ruta = "/cargarTipoProducto";
+            mensaje = "Editar tipo producto";
+            rutaBtn = "./editarTipoProducto";
+            extra = "";
             break;
     }
 
-    datosTabla(ruta,mensaje,rutaBtn,extra);
+    datosTabla(ruta, mensaje, rutaBtn, extra);
 }
