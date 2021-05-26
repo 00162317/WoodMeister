@@ -27,6 +27,17 @@
 	padding: 2em;
 }
 
+.detalle3 {
+	padding: 4em;
+}
+
+.boldLetra{
+	font-weight: bold;
+}
+
+.colorCard{
+	background-color: #B09E80;
+}
 .cardFoto {
 	padding: 1em;
 	margin-bottom: 20px;

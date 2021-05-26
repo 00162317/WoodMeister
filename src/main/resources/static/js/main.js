@@ -9,9 +9,13 @@ function obtenerIds(id) {
 
     let val1 = id
     location.href = './product?id=' + val1;
-
+    alert("Recuerda Iniciar Sesion antes de comprar");
 };
 
+function deleteCarrito(){
+    window.localStorage.clear();
+    alert("Eliminado con exito");
+}
 
 function eliminar(id) {
     let val1 = id
