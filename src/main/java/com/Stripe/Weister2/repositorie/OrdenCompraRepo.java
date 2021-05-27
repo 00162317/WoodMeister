@@ -12,4 +12,5 @@ public interface OrdenCompraRepo extends JpaRepository<OrdenCompra, Integer>{
 
 	@Query(nativeQuery = true,value="select * from public.orden_compra")
 	public List<OrdenCompra> mostrarTodo() throws DataAccessException;
+	
 }

@@ -29,6 +29,7 @@ import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.Producto;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
+import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.dto.sliderDTO;
 import com.Stripe.Weister2.service.*;
 import com.stripe.exception.StripeException;
@@ -42,6 +43,9 @@ public class CarritoController {
 	
 	@Autowired
 	ProductoService ProductoService;
+	
+	@Autowired
+	OrdenCompraService OrdenCompraService;
 	
 	@Autowired
     private StripeService paymentsService;
@@ -100,6 +104,16 @@ public class CarritoController {
 		
 			request.getSession().setAttribute("myCart", p2);
 			Integer pro = Utils.calcularTotal(p2);
+			
+			/*AQUI INGRESAMOS LA TRANSACCION
+			 * */
+			
+			/*OrdenCompra oc = new OrdenCompra();
+			
+			oc.setTotal_money(pro);
+			
+			OrdenCompraService.insertAndUpdate(null);
+			*/
 			//Stripe
 			mav.addObject("amount", pro);
 			mav.addObject("stripePublicKey", stripePublicKey);

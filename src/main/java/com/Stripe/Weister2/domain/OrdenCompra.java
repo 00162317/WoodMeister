@@ -50,4 +50,63 @@ public class OrdenCompra {
 	public OrdenCompra() {
 		
 	}
+
+	public Integer getId_orden_compra() {
+		return id_orden_compra;
+	}
+
+	public void setId_orden_compra(Integer id_orden_compra) {
+		this.id_orden_compra = id_orden_compra;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Integer getTotal_money() {
+		return total_money;
+	}
+
+	public void setTotal_money(Integer total_money) {
+		this.total_money = total_money;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Integer getFkCliente() {
+		return fkCliente;
+	}
+
+	public void setFkCliente(Integer fkCliente) {
+		this.fkCliente = fkCliente;
+	}
+
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
+	public Integer getFkCarrito() {
+		return fkCarrito;
+	}
+
+	public void setFkCarrito(Integer fkCarrito) {
+		this.fkCarrito = fkCarrito;
+	}
+	
+	
+	
 }
