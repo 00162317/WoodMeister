@@ -1,6 +1,8 @@
 package com.Stripe.Weister2.domain;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,6 +49,51 @@ public class OrdenCompra {
 	@Transient
 	private Integer fkCarrito;
 	
+	
+	@Column(name="status")
+	private String status;
+	
+	@Column(name="correlativo")
+	private String correlativo;
+	
+	@Column(name="balance")
+	private String balance;
+	
+	@Column(name="userlog")
+	private String userlog;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCorrelativo() {
+		return correlativo;
+	}
+
+	public void setCorrelativo(String correlativo) {
+		this.correlativo = correlativo;
+	}
+
+	public String getBalance() {
+		return balance;
+	}
+
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
+
+	public String getUserlog() {
+		return userlog;
+	}
+
+	public void setUserlog(String userlog) {
+		this.userlog = userlog;
+	}
+
 	public OrdenCompra() {
 		
 	}

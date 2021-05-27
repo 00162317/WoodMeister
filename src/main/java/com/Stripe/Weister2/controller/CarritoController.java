@@ -44,8 +44,7 @@ public class CarritoController {
 	@Autowired
 	ProductoService ProductoService;
 	
-	@Autowired
-	OrdenCompraService OrdenCompraService;
+
 	
 	@Autowired
     private StripeService paymentsService;
@@ -104,20 +103,12 @@ public class CarritoController {
 		
 			request.getSession().setAttribute("myCart", p2);
 			Integer pro = Utils.calcularTotal(p2);
-			
-			/*AQUI INGRESAMOS LA TRANSACCION
-			 * */
-			
-			/*OrdenCompra oc = new OrdenCompra();
-			
-			oc.setTotal_money(pro);
-			
-			OrdenCompraService.insertAndUpdate(null);
-			*/
+						
 			//Stripe
 			mav.addObject("amount", pro);
 			mav.addObject("stripePublicKey", stripePublicKey);
 			mav.addObject("currency", ChargeRequest.Currency.USD);
+		
 			//mav.setViewName("checkout");
 			
 			mav.addObject("pro", pro);
