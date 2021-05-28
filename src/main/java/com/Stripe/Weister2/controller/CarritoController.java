@@ -147,7 +147,7 @@ public class CarritoController {
 				mav.addObject("name",cor);
 			}
 			
-			mav.setViewName("tracking");
+			mav.setViewName("welcome");
 			return mav;
 		}
 

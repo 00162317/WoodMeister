@@ -45,7 +45,7 @@ public class StripeController {
         String name =auth.getName();
         
         Date fecha = new Date();
-        
+        OrdenCompra oc = new OrdenCompra();
         
         
         mav.addObject("id", charge.getId().toString());
@@ -56,13 +56,11 @@ public class StripeController {
         System.out.println("ID: "+charge.getId().toString());
         System.out.println("Balance: "+charge.getBalanceTransaction().toString());
         
-        OrdenCompra oc = new OrdenCompra();
+       
 		
 		
 		oc.setFecha(fecha);
 		oc.setTotal_money(2);
-		oc.setFkCliente(1);
-		oc.setFkCarrito(1);
 		
 		oc.setStatus(charge.getStatus());
 		oc.setCorrelativo(charge.getId());

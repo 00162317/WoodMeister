@@ -34,21 +34,6 @@ public class OrdenCompra {
 	@Column(name = "total_money")
 	private Integer total_money;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="fkCliente")
-	private Usuario usuario;
-	
-	@Transient
-	private Integer fkCliente;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	//@PrimaryKeyJoinColumn
-	@JoinColumn(name="fkCarrito")
-	private Carrito carrito;
-	
-	@Transient
-	private Integer fkCarrito;
-	
 	
 	@Column(name="status")
 	private String status;
@@ -122,38 +107,5 @@ public class OrdenCompra {
 		this.total_money = total_money;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Integer getFkCliente() {
-		return fkCliente;
-	}
-
-	public void setFkCliente(Integer fkCliente) {
-		this.fkCliente = fkCliente;
-	}
-
-	public Carrito getCarrito() {
-		return carrito;
-	}
-
-	public void setCarrito(Carrito carrito) {
-		this.carrito = carrito;
-	}
-
-	public Integer getFkCarrito() {
-		return fkCarrito;
-	}
-
-	public void setFkCarrito(Integer fkCarrito) {
-		this.fkCarrito = fkCarrito;
-	}
-	
-	
 	
 }
