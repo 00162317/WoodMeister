@@ -65,7 +65,18 @@ public class CarritoController {
 	
 		/*a;adir al carrito sin necesidad de tener sesion*/
 		@RequestMapping("/Shop")
-		public String addcarrito2(@RequestParam Integer id, HttpServletRequest request) {
+		public String addcarrito2(@RequestParam Integer id, @RequestParam Integer material, HttpServletRequest request) {
+			String eleccion;
+			if(material == 1) {
+				eleccion = "Madera";
+				System.out.print(eleccion);
+			}
+			else {
+				eleccion = "Metal";
+				System.out.print("///////////////////////////////////");
+				System.out.print("Metal");
+			}
+			
 			List<sliderDTO> p2 = Utils.getCartInSession2(request);
 			List<sliderDTO> slider = null;
 			List<sliderDTO> slider2 = new ArrayList<>();

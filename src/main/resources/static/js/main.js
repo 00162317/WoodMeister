@@ -1,5 +1,15 @@
 //href="https://wa.me/+50372682989/?text=Texto"
-
+function ShowSelected()
+{
+/* Para obtener el valor */
+var cod = document.getElementById("producto").value;
+alert(cod);
+ 
+/* Para obtener el texto */
+var combo = document.getElementById("producto");
+var selected = combo.options[combo.selectedIndex].text;
+alert(selected);
+}
 const contactUs = () =>{
     let val1 = document.getElementById("whats").value;
     location.href='https://wa.me/+50360605555/?text='+val1;
@@ -24,7 +34,12 @@ function eliminar(id) {
 
 function obtenerIdsC(id) {
     let val1 = id
-    location.href = './Shop?id=' + val1;
+    let cod = document.getElementById("tipomaterial").value;
+    alert("ohola"+ cod);
+    var combo = document.getElementById("tipomaterial");
+    let selected = combo.options[combo.selectedIndex].text;
+    alert("se elecciono"+selected);
+    location.href = './Shop?id=' + val1  + "&material="+ cod;
 };
 
 (function () {
