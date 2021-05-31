@@ -24,18 +24,22 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Tipo de material</th>
-                                                <th scope="col">Tipo de producto</th>
                                                 <th scope="col">Precio</th>
+                                                <!--<th scope="col">Tipo de producto</th>
+                                                <th scope="col">Tipo de Material</th>-->
                                             </tr>
                                             <th:block th:each="producto, row:${producto}">
                                                 <div id="prod" th:onclick="'obtenerIds('+${producto.id_producto}+')'">
 
                                                     <tr>
                                                         <th th:text="${producto.nombre}"></th>
-                                                        <th th:text="${producto.material.nombre_material}"></th>
-                                                        <th th:text="${producto.tipo_producto.nombre_tipo}" />
+                                                   
                                                         <th th:text="${producto.precio}" />
+
+                                                        <!--<th th:text="${producto.tipo_producto.nombre_tipo}" />
+
+                                                        <th th:text="${producto.material.nombre_material}" />
+                                                        -->
                                                     </tr>
                                                 </div>
                                                 </th>
@@ -52,19 +56,20 @@
                 </div>
                 <form action='/charge' method='POST' id='checkout-form'>
                     <input type='hidden' th:value='${amount*100}' name='amount' />
-                    <label>Price:<span th:text='${amount}' /></label>
+                    <label>Total:<span th:text='${amount}' /></label>
+                    <br>
                     <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
                     <script src='https://checkout.stripe.com/checkout.js' class='stripe-button' th:attr='data-key=${stripePublicKey}, 
-                     data-amount=${amount}, 
-                     data-currency=${currency}' data-name='Baeldung' data-description='Spring course checkout'
+                     data-amount=${amount*100}, 
+                     data-currency=${currency}' data-name='Wood Meister' data-description='Creatividad con Madera'
                         data-image='img/woodMeister.png'
                         data-locale='auto' data-zip-code='false'>
                         </script>
                 </form>
                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"> <a class="btn btn-primary" href="/index">Finalizar
-                            compra</a></button>
+                
+                <div class="modal-footer justify-content-md-center">
+                    <img src="img/woodMeister.png" alt="">
                 </div>
             </div>
         </div>

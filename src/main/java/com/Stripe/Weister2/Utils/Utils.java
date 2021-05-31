@@ -25,6 +25,9 @@ public class Utils {
 			return p2;
 		}
 	}
+	public static void removeCartInSession(HttpServletRequest request) {
+	      request.getSession().removeAttribute("myCart");
+	   }
 
 	public static Integer calcularTotal( List<sliderDTO> p2) {
 

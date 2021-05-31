@@ -3,22 +3,60 @@
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<!--Boostrap  -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<!--Boostrap Script  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+<!--animate css  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<!--Own Styles  -->
+<link rel="stylesheet" href="css/cstyle.css">
+<link rel="stylesheet" href="css/estilo.css">
+<!--Font Awesome-->
+<script src="https://kit.fontawesome.com/f2dde07271.js" crossorigin="anonymous"></script>
+<!--ALLfont.es-->
+<link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
+<link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
+<script src="js/main.js"></script>
+
 <head>
     <title>Result</title>
 </head>
 
 <body>
-    <h3 th:if='${error}' th:text='${error}' style='color: red;'></h3>
-    <div th:unless='${error}'>
-        <h3 style='color: green;'>Success!</h3>
-        <div>Id.: <span th:text='${id}' /></div>
-        <div>Status: <span th:text='${status}' /></div>
-        <div>Charge id.: <span th:text='${chargeId}' /></div>
-        <div>Balance transaction id.: <span th:text='${balance_transaction}' /></div>
+
+    <th:block th:include="/block/header"></th:block>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-10">
+                <div class="text-center">
+                    <h3 th:if='${error}' th:text='${error}' style='color: red;'></h3>
+                    <div th:unless='${error}'>
+                        <h3 style='color: green;'>¡Pago procesado con exito! <i class="fas fa-thumbs-up"></i> </h3>
+
+                        <div class="fs-4 boldLetra">Correlativo: </div>
+                            <div class="fs-4"> <span th:text='${id}' /></div>
+                        <div class="fs-4 boldLetra">Estado: </div>
+                            <div class="fs-4"> <span th:text='${status}' /></div>
+                        <div class="fs-4 boldLetra">Correlativo de balance de transacion: </div>
+                            <div class="fs-4"><span th:text='${balance_transaction}' /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href='/checkout.html'>Checkout again</a>
+
+    <th:block th:include="/block/footer"></th:block>
+
 </body>
 
 </html>

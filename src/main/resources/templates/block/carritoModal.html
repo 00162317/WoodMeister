@@ -59,7 +59,7 @@
                     <label>Total:<span th:text='${amount}' /></label>
                     <br>
                     <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
-                    <script src='https://checkout.stripe.com/checkout.js' class='stripe-button' th:attr='data-key=${stripePublicKey}, 
+                    <script src='https://checkout.stripe.com/checkout.js' class='stripe-button ' th:attr='data-key=${stripePublicKey}, 
                      data-amount=${amount*100}, 
                      data-currency=${currency}' data-name='Wood Meister' data-description='Creatividad con Madera'
                         data-image='img/woodMeister.png'

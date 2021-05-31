@@ -63,11 +63,13 @@
 														<th th:text="${producto.nombre}" />
 													</h5>
 													<p class="card-text">
-														<th th:text="${producto.nombre}" />
+														<th th:text="${producto.precio}" />
 													</p>
 												</div>
 											</div>
+											
 										</div>
+										<i class="abajoizquierda fas fa-trash-alt" th:onclick ="'eliminar('+${producto.id_producto}+')'"></i>
 									</div>
 								</th:block>
 							</div>
@@ -79,13 +81,14 @@
 						<div class="row justify-content-md-center">
 							<div class="col col-lg-10">
 								<div sec:authorize="isAuthenticated()">
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									<button type="button" class="buttonown bluebutton"  data-bs-toggle="modal"
 										data-bs-target="#exampleModal">
 										Total de compra</button>
-									
-									<button type="button" class="btn btn-primary" th:onclick="deleteCarrito()">
-										Eliminar carrito de compras
-									</button>
+							
+									<a class="buttonown bluebutton" th:onclick="deleteCarrito()" >Eliminar Carrito</a>
+								</div>
+								<div sec:authorize="!isAuthenticated()">
+									<h3>Debes registrarte o iniciar sesion para poder comprar</h3>
 								</div>
 							</div>
 						</div>

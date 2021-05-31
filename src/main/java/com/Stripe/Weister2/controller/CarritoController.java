@@ -95,6 +95,11 @@ public class CarritoController {
 			
 			return "redirect:/ShowCarrito";
 		}
+		@RequestMapping("/eliminarCarrito")
+		public String eliminarCarrito(HttpServletRequest request) {
+			Utils.removeCartInSession(request);
+			return "redirect:/ShowCarrito";
+		}
 		
 		@RequestMapping("/ShowCarrito")
 		public ModelAndView showCarrito2(HttpServletRequest request) {

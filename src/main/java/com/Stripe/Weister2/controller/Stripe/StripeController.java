@@ -3,6 +3,8 @@ package com.Stripe.Weister2.controller.Stripe;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.domain.Usuario;
@@ -34,7 +37,7 @@ public class StripeController {
 
 
 	@RequestMapping("/charge")
-	public ModelAndView charge2(ChargeRequest chargeRequest, Model model,Authentication auth) 
+	public ModelAndView charge2(HttpServletRequest request, ChargeRequest chargeRequest, Model model,Authentication auth) 
 			throws StripeException, InvalidAlgorithmParameterException{
 		
 		ModelAndView mav = new ModelAndView();
@@ -71,6 +74,7 @@ public class StripeController {
 		
 		System.out.println("ESTE ES: "+name); 
 		mav.setViewName("result");
+		Utils.removeCartInSession(request);
 		return mav;
 	}
 

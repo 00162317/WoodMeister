@@ -6,7 +6,18 @@
 
 /*WELCOME*/
 
-
+.abajoizquierda{
+	position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-size: 1.5em;
+  color: red
+}
+.abajoizquierda:hover{
+  font-size: 3em;
+  color: #900C3F;
+  transition: 0.5s
+}
 
 .patterns {
 	height: 100vh;
@@ -639,6 +650,28 @@ form .btn input[type="submit"] {
 .goldbutton:hover {
 	background-color: #B09E80;
 	color: white;
+	border: 2px solid #B09E80;
+}
+.bluebutton {
+	background-color: #192537;
+	color: white;
+	border: 2px solid white;
+}
+
+.bluebutton:hover {
+	background-color: #192537;
+	color: #B09E80;
+	border: 2px solid #B09E80;
+}
+.goldbutton2 {
+	background-color: #B09E80;
+	color: white;
+	border: 2px solid #B09E80;
+}
+
+.goldbutton2:hover {
+	background-color: #B09E80;
+	color: #192537;
 	border: 2px solid #B09E80;
 }
 

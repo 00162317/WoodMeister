@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tracking</title>
+	<title>Welcome</title>
 	<!--Boostrap  -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -40,15 +40,64 @@
 		<section class="container">
 			<div class="row justify-content-md-center">
 				<div class="col col-lg-10">
-					<h2>
-						TRACKING
-					</h2>
 
+					<div class="patterns">
+						<svg width="100%" height="100%">
+							<defs>
+								<pattern id="polka-dots" x="0" y="0" width="100" height="100"
+									patternUnits="userSpaceOnUse">
+									<circle fill="#be9ddf" cx="25" cy="25" r="3"></circle>
+								</pattern>
+								<style>
+									@import url("https://fonts.googleapis.com/css?  family=Lora:400,400i,700,700i");
+								</style>
+
+							</defs>
+
+							<rect x="0" y="0" width="100%" height="80%" fill="url(#polka-dots)"> </rect>
+
+
+
+							<text x="50%" y="40%" text-anchor="middle">
+								Bienvenido a
+							</text>
+							<text x="50%" y="60%" text-anchor="middle">
+								WoodMeister
+							</text>
+						</svg>
+					</div>
+				</div>
+				<div>
+					<span sec:authorize="!isAuthenticated()">Bob</span>
+					<div sec:authorize="!isAuthenticated()">
+						Text visible only to authenticated users.
+					</div>
 				</div>
 			</div>
 			</div>
 		</section>
+		<div class="whats">
+			<th:block th:include="/block/contact"></th:block>
+		</div>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-10">
+					<div class="detalle3">
+						<h2>
+							Hey,
+							<div th:if="${name != queso}" th:text="${name}"></div>
+						</h2>
+						<label for="text">Nos complace que estes uniendote a nuestra familia WoodMeister.</label>
+						<label for="text">Estas a un paso de entrar a una gran exprencia con nuestros productos</label>
+						<label for="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt pariatur
+							quas ratione dolor consequatur molestiae autem. Provident distinctio molestias quas officia
+							illo recusandae non blanditiis nesciunt sint pariatur. Inventore, distinctio.</label>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
+
 	<th:block th:include="/block/footer"></th:block>
 </body>
 
