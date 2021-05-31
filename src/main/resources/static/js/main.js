@@ -35,12 +35,18 @@ function eliminar(id) {
 function obtenerIdsC(id) {
     let val1 = id
     let cod = document.getElementById("tipomaterial").value;
-    alert("ohola"+ cod);
+   
     var combo = document.getElementById("tipomaterial");
     let selected = combo.options[combo.selectedIndex].text;
-    alert("se elecciono"+selected);
+    
     location.href = './Shop?id=' + val1  + "&material="+ cod;
 };
+
+$(window).load(function() {
+	  $('.flexslider2').flexslider({
+	    animation: "slide"
+	  });
+	});
 
 (function () {
 

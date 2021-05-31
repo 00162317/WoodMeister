@@ -83,7 +83,10 @@ public class CarritoController {
 			
 			try {
 				slider = ProductoService.dtoPrueba2(id);
+				//para setearle el dato que me falta
+				slider.get(0).setMaterial(eleccion);
 				p2.add(slider.get(0));
+				
 			
 			} catch (Exception e) {
 				// TODO: handle exception
