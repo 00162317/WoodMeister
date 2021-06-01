@@ -26,6 +26,17 @@ public class Carrito {
 	@Column(name = "valor_money")
 	private Integer valor_money;
 	
+	@Column(name = "material")
+	private String material;
+	
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="fkProducto")
 	private Producto producto;

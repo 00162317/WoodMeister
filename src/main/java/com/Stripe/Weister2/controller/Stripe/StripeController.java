@@ -2,6 +2,8 @@ package com.Stripe.Weister2.controller.Stripe;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Stripe.Weister2.Utils.Utils;
+import com.Stripe.Weister2.domain.Carrito;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.domain.Usuario;
+import com.Stripe.Weister2.dto.sliderDTO;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
+import com.Stripe.Weister2.service.CarritoService;
 import com.Stripe.Weister2.service.OrdenCompraService;
 import com.Stripe.Weister2.service.StripeService;
 import com.Stripe.Weister2.service.UsuarioService;
@@ -36,11 +41,13 @@ public class StripeController {
 	private UsuarioService usuarioService;
 	@Autowired
 	OrdenCompraService OrdenCompraService;
+	@Autowired
+	private CarritoService CarritoService;
 
 	@RequestMapping("/charge")
 	public ModelAndView charge2(HttpServletRequest request, ChargeRequest chargeRequest, Model model,Authentication auth) 
 			throws StripeException, InvalidAlgorithmParameterException{
-		
+		int aux=0;
 		ModelAndView mav = new ModelAndView();
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(Currency.USD);
@@ -51,6 +58,7 @@ public class StripeController {
         System.out.print(usuario.getId_usuario());
         Date fecha = new Date();
         OrdenCompra oc = new OrdenCompra();
+        Carrito car =new Carrito();
         
         
         mav.addObject("id", charge.getId().toString());
@@ -60,22 +68,38 @@ public class StripeController {
         
         System.out.println("ID: "+charge.getId().toString());
         System.out.println("Balance: "+charge.getBalanceTransaction().toString());
-        
-       
+        List<sliderDTO> p2 = Utils.getCartInSession2(request);
+		
+		request.getSession().setAttribute("myCart", p2);
+		Integer pro = Utils.calcularTotal(p2);
+		//
+		System.out.println(p2);
+		int y= p2.size();
+		System.out.println(y);
+		try {
+			if(aux<=y) {
+		for (int i=0 ; i<=y ; i++) {
+			car.setCantidad(1);
+			car.setValor_money(p2.get(i).getPrecio());
+			car.setMaterial(p2.get(i).getMaterial());	
+			car.setUsuario(usuario);
+		}
+		CarritoService.insertAndUpdate(car);
+		aux++;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 		
 		oc.setFecha(fecha);
-		oc.setTotal_money(2);
-		System.out.print("FKKKKKKKKKK");
-		System.out.print(oc.getFk_usuario());
-		System.out.println("HEY: "+usuario.getId_usuario());
-		System.out.println("HEY2: "+oc.getFk_usuario());
+		oc.setTotal_money(pro);
+		oc.setUsuario(usuario);
 		oc.setStatus(charge.getStatus());
 		oc.setCorrelativo(charge.getId());
 		oc.setBalance(charge.getBalanceTransaction());
 		oc.setUserlog(name);
-		oc.setFk_usuario(null);
-		oc.setFk_usuario(34);
 		
 		OrdenCompraService.insertAndUpdate(oc);
 		

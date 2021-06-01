@@ -35,7 +35,7 @@
 
 <body>
 
-	<th:block th:include="/block/header"></th:block>
+    <th:block th:include="/block/header"></th:block>
 
     <div class="container rob">
         <div class="row justify-content-md-center">
@@ -43,7 +43,7 @@
                 <div class="text-center">
                     <p class="fs-2">Agregar material</p>
                 </div>
-                <form th:action="@{/ingresarMaterial}" method="POST" th:object="${material}">
+                <form th:action="@{/adminIngresarMaterial}" method="POST" th:object="${material}">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
                         <input id="nombre" th:field="${material.nombre_material}" type="text" class="form-control">
@@ -59,8 +59,47 @@
         </div>
     </div>
 
-	<th:block th:include="/block/footer"></th:block>
-	
+
+    <div class="container rob">
+        <div class="row justify-content-md-center rob">
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="/adminRegistro">
+                                <img src="img/tipoMa.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                            <a href="/adminMostrarTproducto">
+                                <img src="img/tipoPro.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm rob">
+                <div class="card mb-3 text-center">
+                    <div class="fotoProducto">
+                        <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                            <a href="/adminMostrarMaterial">
+                                <img src="img/tipoMa.png" class="card-img-top" alt="...">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:include="/block/footer"></th:block>
+
 </body>
 
 </html>

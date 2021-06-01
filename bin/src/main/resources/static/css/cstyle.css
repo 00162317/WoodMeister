@@ -6,7 +6,18 @@
 
 /*WELCOME*/
 
-
+.abajoizquierda{
+	position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-size: 1.5em;
+  color: red
+}
+.abajoizquierda:hover{
+  font-size: 3em;
+  color: #192537;
+  transition: 0.5s
+}
 
 .patterns {
 	height: 100vh;
@@ -30,7 +41,7 @@
 	0% {
 	  stroke-dasharray: 0 50%;
 	  stroke-dashoffset:  20%;
-	  fill:hsl(64, 70%, 58%)
+	  fill:hsl(0, 0%, 3%)
   
 	}
 	
@@ -106,9 +117,7 @@
   background: -webkit-linear-gradient(left, #a445b2, #fa4299);
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-input[type="radio"] {
-  display: none;
-}
+
 #signup:checked ~ .slider-tab {
   left: 50%;
 }
@@ -575,6 +584,14 @@ form .btn input[type="submit"] {
 	height: 100%;
 	width: 100%;
 }
+.liflex2 {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	min-height: 400px;
+	height: 100%;
+	width: 100%;
+}
 
 #flexcontainer  .flexslider {
 	border: none;
@@ -639,6 +656,28 @@ form .btn input[type="submit"] {
 .goldbutton:hover {
 	background-color: #B09E80;
 	color: white;
+	border: 2px solid #B09E80;
+}
+.bluebutton {
+	background-color: #192537;
+	color: white;
+	border: 2px solid white;
+}
+
+.bluebutton:hover {
+	background-color: #192537;
+	color: #B09E80;
+	border: 2px solid #B09E80;
+}
+.goldbutton2 {
+	background-color: #B09E80;
+	color: white;
+	border: 2px solid #B09E80;
+}
+
+.goldbutton2:hover {
+	background-color: #B09E80;
+	color: #192537;
 	border: 2px solid #B09E80;
 }
 

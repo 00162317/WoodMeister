@@ -25,7 +25,7 @@
     <link href="https://allfont.es/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css" />
     <link href="https://allfont.es/allfont.css?fonts=playfair-display" rel="stylesheet" type="text/css" />
     
-    <script src="js/main.js"></script>
+    <script src="js/main2.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
                 <div class="text-center">
                     <p class="fs-2">Agregar producto</p>
                 </div>
-                <form th:action="@{/ingresarProducto}" method="POST" th:object="${producto}">
+                <form th:action="@{/adminIngresarProducto}" method="POST" th:object="${producto}">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
                         <input id="nombre" th:field="${producto.nombre}" type="text" class="form-control">
@@ -93,8 +93,8 @@
                 <div class="card mb-3 text-center">
                     <div class="fotoProducto">
                         <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <a href="registro.html">
-                                <img src="images/volver.png" class="card-img-top" alt="...">
+                            <a href="/adminRegistro">
+                                <img src="img/volver.png" class="card-img-top" alt="...">
                             </a>
                         </button>
                     </div>
@@ -104,8 +104,8 @@
                 <div class="card mb-3 text-center">
                     <div class="fotoProducto">
                         <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                            <a href="modificar.html">
-                                <img src="images/modificar.png" class="card-img-top" alt="...">
+                            <a href="/adminMostrarTproducto">
+                                <img src="img/tipoPro.png" class="card-img-top" alt="...">
                             </a>
                         </button>
                     </div>
@@ -115,8 +115,8 @@
                 <div class="card mb-3 text-center">
                     <div class="fotoProducto">
                         <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
-                            <a href="eliminar.html">
-                                <img src="images/eliminar.png" class="card-img-top" alt="...">
+                            <a href="/adminMostrarMaterial">
+                                <img src="img/tipoMa.png" class="card-img-top" alt="...">
                             </a>
                         </button>
                     </div>
