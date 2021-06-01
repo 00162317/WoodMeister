@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -189,8 +192,10 @@ public class MainController {
 		return mav;
 	}
 
+
+
 	@RequestMapping("/register")
-	public ModelAndView register(@ModelAttribute Usuario usuario) {
+	public ModelAndView register() {
 		ModelAndView mav = new ModelAndView();
 		int x = 1, y = 0, registrado = 0;
 		List<Sexo> listaSexo = null;
@@ -205,35 +210,35 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		usuario.setFkTipo_usuario(x);
-		mav.addObject("usuario", new Usuario());
-		usuario.setRol("ROLE_ADMIN");
+		Usuario usuario = new Usuario();
+		usuario.setRol("ROLE_USER");
+		mav.addObject("usuario", usuario);
 		mav.addObject("username", y);
 		mav.addObject("email", y);
 		mav.addObject("pass", y);
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("registrado", registrado);
 		mav.addObject("listaTusuario", listaTusuario);
-		mav.setViewName("register");
+		mav.setViewName("register2");
 		return mav;
 	}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("/ingresarUsuario")
-	public ModelAndView ingresarUsuario(@RequestParam("pass") String pass, @RequestParam("password") String password,
-			@RequestParam("nombre") String nombre, @RequestParam("email") String email,
-			@ModelAttribute Usuario usuario) {
-		ModelAndView mav = new ModelAndView();
 
-		System.out.print(email);
+
+	@RequestMapping("/registerproff")
+	public ModelAndView formProducto(@Valid @ModelAttribute Usuario usuario, BindingResult result, @RequestParam("pass") String pass,
+			@RequestParam("password") String password, @RequestParam("nombre") String nombre,
+			@RequestParam("email") String email) {
+		ModelAndView mav = new ModelAndView();
 		int usuario1 = 0, emai = 0, aux = 0, pas = 0, registrado = 0;
-		System.out.print("asdjjaska");
-		System.out.print(nombre);
-		Usuario usuarioUno = new Usuario();
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 		List<Usuario> usuarioList = null;
-
+		if (result.hasErrors()) {
+			mav.addObject("registrado", registrado);
+			mav.setViewName("register2");
+			
+		} 
 		try {
 			usuarioList = UsuarioService.findAll();
 
@@ -242,14 +247,10 @@ public class MainController {
 			for (Usuario Usuario : usuarioList) {
 				System.out.print(Usuario.getNombre());
 				if (Usuario.getNombre().equals(nombre)) {
-					System.out.print("YA EXISTE");
-					System.out.print(Usuario.getNombre());
 					usuario1 = 1;
 					aux++;
 				}
 				if (Usuario.getEmail().equals(email)) {
-
-					System.out.print(Usuario.getNombre());
 					emai = 1;
 					aux++;
 				}
@@ -263,7 +264,8 @@ public class MainController {
 			mav.addObject("listaTusuario", listaTusuario);
 			mav.addObject("usuario", usuario);
 			mav.addObject("listaSexo", listaSexo);
-			mav.setViewName("register");
+			mav.setViewName("register2");
+
 			if (aux != 0) {
 				mav.addObject("username", usuario1);
 				mav.addObject("email", emai);
@@ -271,6 +273,7 @@ public class MainController {
 				mav.addObject("registrado", registrado);
 				return mav;
 			}
+
 			UsuarioService.insertAndUpdate(usuario);
 
 		} catch (Exception e) {
@@ -279,10 +282,7 @@ public class MainController {
 		registrado = 1;
 		mav.addObject("registrado", registrado);
 		return mav;
-
 	}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 	@RequestMapping("/prueba")
 	public ModelAndView prueba() {

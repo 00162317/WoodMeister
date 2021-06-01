@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(schema = "public", name = "usuario")
@@ -21,12 +22,14 @@ public class Usuario {
 	private Integer id_usuario;
 	
 	@Column(name = "nombre")
+	@NotEmpty(message="No puede ir vacio")
 	private String nombre;
 	
 	@Column(name = "apellido")
 	private String apellido;
 	
 	@Column(name = "email")
+	@NotEmpty(message="No puede ir vacio")
 	private String email;
 	
 	@Column(name = "password")
