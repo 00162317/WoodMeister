@@ -15,7 +15,7 @@
 }
 .abajoizquierda:hover{
   font-size: 3em;
-  color: #900C3F;
+  color: #192537;
   transition: 0.5s
 }
 
@@ -41,7 +41,7 @@
 	0% {
 	  stroke-dasharray: 0 50%;
 	  stroke-dashoffset:  20%;
-	  fill:hsl(64, 70%, 58%)
+	  fill:hsl(0, 0%, 3%)
   
 	}
 	

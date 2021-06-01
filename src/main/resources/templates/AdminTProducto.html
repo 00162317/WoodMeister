@@ -29,7 +29,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap4.js"></script>
 
-    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/main2.js" type="text/javascript"></script>
     <script type="text/javascript">mostrarTabla(4);</script>
 </head>
 
@@ -42,7 +42,7 @@
             <div class="col col-lg-12 text-center">
 
                 <p class=" fs-2">Tipo de producto</p>
-                <button type="submit" class="btn"><a href="/agregarTipoProducto">Agregar Tipo Producto</a></button>
+                <button type="submit" class="btn"><a href="/adminAgregarTipoProducto">Agregar Tipo Producto</a></button>
                 <table class=" table" id="tabla">
                     <thead>
                         <tr>
@@ -54,13 +54,14 @@
             </div>
         </div>
     </div>
+
     <div class="container rob">
         <div class="row justify-content-md-center rob">
             <div class="col-sm rob">
                 <div class="card mb-3 text-center">
                     <div class="fotoProducto">
                         <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <a href="/adminRegistro">
+                            <a href="/AdminRegistro">
                                 <img src="img/volver.png" class="card-img-top" alt="...">
                             </a>
                         </button>
@@ -82,8 +83,8 @@
                 <div class="card mb-3 text-center">
                     <div class="fotoProducto">
                         <button type="image" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
-                            <a href="/adminModificar">
-                                <img src="img/product.png" class="card-img-top" alt="...">
+                            <a href="/adminMostrarTproducto">
+                                <img src="img/tipoPro.png" class="card-img-top" alt="...">
                             </a>
                         </button>
                     </div>
@@ -91,7 +92,7 @@
             </div>
         </div>
     </div>
-	
+
 	<th:block th:include="/block/footer"></th:block>
 	
 </body>

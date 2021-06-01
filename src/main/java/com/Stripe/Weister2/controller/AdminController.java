@@ -269,7 +269,7 @@ public class AdminController {
 	
 	//--------------------------------------------------------------- Pageable Producto
 	
-	@RequestMapping("/adminCargarProductos")
+	@RequestMapping("/CargarProductos")
 	public @ResponseBody TablaDTO cargar(@RequestParam Integer draw, @RequestParam Integer start,
 			@RequestParam Integer length, @RequestParam(value="search[value]",required =false) String search) {
 		
