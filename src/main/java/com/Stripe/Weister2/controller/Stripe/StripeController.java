@@ -66,13 +66,16 @@ public class StripeController {
 		
 		oc.setFecha(fecha);
 		oc.setTotal_money(2);
-		oc.setFk_usuario(usuario.getId_usuario());
 		System.out.print("FKKKKKKKKKK");
 		System.out.print(oc.getFk_usuario());
+		System.out.println("HEY: "+usuario.getId_usuario());
+		System.out.println("HEY2: "+oc.getFk_usuario());
 		oc.setStatus(charge.getStatus());
 		oc.setCorrelativo(charge.getId());
 		oc.setBalance(charge.getBalanceTransaction());
 		oc.setUserlog(name);
+		oc.setFk_usuario(null);
+		oc.setFk_usuario(34);
 		
 		OrdenCompraService.insertAndUpdate(oc);
 		
