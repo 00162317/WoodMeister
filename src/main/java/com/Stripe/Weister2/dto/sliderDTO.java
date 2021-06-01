@@ -9,7 +9,14 @@ public class sliderDTO {
 	Integer precio;
 	String nombreImagen;
 	String material;
+	Integer idcarrito;
 	
+	public Integer getIdcarrito() {
+		return idcarrito;
+	}
+	public void setIdcarrito(Integer idcarrito) {
+		this.idcarrito = idcarrito;
+	}
 	public String getMaterial() {
 		return material;
 	}

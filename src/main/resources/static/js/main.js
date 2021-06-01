@@ -26,9 +26,13 @@ function deleteCarrito(){
 	 location.href = './eliminarCarrito';
 }
 
-function eliminar(id) {
+function eliminar(id,id2) {
     let val1 = id
-    location.href = './eliminarDelCarrito?id=' + val1;
+    let cod = document.getElementById("material").value;
+    alert(id2)
+    let cod2 = document.getElementById("material").text;
+    
+    location.href = './eliminarDelCarrito?id=' + val1 + "&material=" + id2;
 
 };
 

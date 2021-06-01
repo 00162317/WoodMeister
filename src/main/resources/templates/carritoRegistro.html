@@ -66,13 +66,14 @@
 													$	<th th:text="${producto.precio}" />
 													</p>
 													<p class="card-text">
-														Material solicitado: <th th:text="${producto.material}" />
+														Material solicitado: <p  th:text="${producto.material}"> </p>
 													</p>
+													<input type="hidden" id="material" th:value="${producto.material}">
 												</div>
 											</div>
 											
-										</div>
-										<i class="abajoizquierda fas fa-trash-alt" th:onclick ="'eliminar('+${producto.id_producto}+')'"></i>
+										</div>										
+										<i class="abajoizquierda fas fa-trash-alt" th:onclick ="|eliminar('+${producto.id_producto}+','+${producto.idcarrito}+')|"></i>
 									</div>
 								</th:block>
 							</div>

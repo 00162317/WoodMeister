@@ -80,11 +80,13 @@ public class CarritoController {
 			List<sliderDTO> p2 = Utils.getCartInSession2(request);
 			List<sliderDTO> slider = null;
 			List<sliderDTO> slider2 = new ArrayList<>();
+			sliderDTO slide = new sliderDTO();
 			
 			try {
 				slider = ProductoService.dtoPrueba2(id);
 				//para setearle el dato que me falta
 				slider.get(0).setMaterial(eleccion);
+				slider.get(0).setIdcarrito(material);
 				p2.add(slider.get(0));
 				
 			
@@ -98,11 +100,13 @@ public class CarritoController {
 			
 		}
 		@RequestMapping("/eliminarDelCarrito")
-		public String eliminarDeCarrito(@RequestParam Integer id, HttpServletRequest request) {
+		public String eliminarDeCarrito(@RequestParam Integer id, @RequestParam Integer material,HttpServletRequest request) {
 			List<sliderDTO> p2 = Utils.getCartInSession2(request);
 			List<sliderDTO> p3 = new ArrayList<>();	
+
+			System.out.print(material);
 			
-			p3 = Utils.EliminarDelCarrito2(p2, id);
+			p3 = Utils.EliminarDelCarrito3(p2, id,material);
 			
 			request.getSession().setAttribute("myCart", p3);
 		
