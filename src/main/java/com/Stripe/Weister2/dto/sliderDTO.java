@@ -1,5 +1,6 @@
 package com.Stripe.Weister2.dto;
 
+import java.util.Date;
 
 public class sliderDTO {
 	
@@ -10,6 +11,14 @@ public class sliderDTO {
 	String nombreImagen;
 	String material;
 	Integer idcarrito;
+	Integer idorden;
+	Date fecha;
+	Integer totalFinal;
+	String correlativo;
+	String balance;
+	String Status;
+	
+	
 	
 	public Integer getIdcarrito() {
 		return idcarrito;

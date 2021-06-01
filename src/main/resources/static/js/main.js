@@ -21,6 +21,11 @@ function obtenerIds(id) {
     location.href = './product?id=' + val1;
     
 };
+function track() {
+
+    alert("entro")
+    
+};
 
 function deleteCarrito(){
 	 location.href = './eliminarCarrito';

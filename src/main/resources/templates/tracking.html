@@ -49,19 +49,27 @@
 	<main>
 	<section class="container">
 		<div class="row justify-content-md-center">
-			<div class="col col-lg-10">
-				<h1>
-					Estas son tus ordenes:
-				</h1>
+			<h1>Estas son tus ordenes:</h1>
+			<th:block th:each="producto, row:${ordenes}">
+				<div class="col col-lg-10 col-md-5 col-sm-12 mt-5">
+				<div class="card col ">
+					<h5 class="card-header">ID correlativo: <th th:text="${producto.correlativo}" /></h5>
+					<div class="card-body">
+						<h5 class="card-title"> Monto : $ <th th:text="${producto.total_money}" /></h5>
+						<p class="card-text">Fecha de orden: <th th:text="${producto.fecha}" /> </p>
+						<a  class="bluebutton buttonown"  th:onclick="'track()'">Detalles</a>
+					</div>
+				</div>
 			</div>
-			
+			</th:block>
+		
+
 			<span sec:authorize="isAuthenticated()">Bob</span>
 			<div sec:authorize="isAuthenticated()">Text visible only to
 				authenticated users.</div>
 
 		</div>
-		</div>
-		</div>
+
 	</section>
 	</main>
 	<th:block th:include="/block/footer"></th:block>

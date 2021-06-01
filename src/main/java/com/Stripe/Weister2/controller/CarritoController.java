@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SessionAttributeMet
 import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.Producto;
+import com.Stripe.Weister2.domain.Usuario;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
 import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.dto.sliderDTO;
@@ -44,10 +45,14 @@ public class CarritoController {
 	@Autowired
 	ProductoService ProductoService;
 	
-
+	@Autowired
+	OrdenCompraService OrdenCompraService;
 	
 	@Autowired
     private StripeService paymentsService;
+	
+	@Autowired
+	private UsuarioService UsuarioService;
 	
 	@Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
@@ -177,8 +182,10 @@ public class CarritoController {
 		@RequestMapping("/tracking")
 		public ModelAndView tracking(Authentication auth) {
 			ModelAndView mav = new ModelAndView();
+			List<OrdenCompra> ordenes = null;
 			String name =auth.getName();
-			
+			 Usuario usuario = UsuarioService.findByNombre(name);
+	
 			if(name != null) {
 				mav.addObject("name",name);
 				
@@ -187,6 +194,13 @@ public class CarritoController {
 				mav.addObject("name",cor);
 			}
 			
+			try {
+				ordenes = OrdenCompraService.findPersonOrders(usuario.getId_usuario());
+				
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			mav.addObject("ordenes",ordenes);
 			mav.setViewName("tracking");
 			return mav;
 		}

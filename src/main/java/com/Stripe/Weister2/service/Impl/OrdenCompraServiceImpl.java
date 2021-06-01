@@ -47,4 +47,10 @@ public class OrdenCompraServiceImpl implements OrdenCompraService{
 		return Repo.totalMoney();
 	}
 
+	@Override
+	public List<OrdenCompra> findPersonOrders(Integer code) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return Repo.findList(code);
+	}
+
 }
