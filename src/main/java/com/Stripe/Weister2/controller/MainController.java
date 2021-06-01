@@ -192,7 +192,7 @@ public class MainController {
 	@RequestMapping("/register")
 	public ModelAndView register(@ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-		int x = 1, y = 0;
+		int x = 1, y = 0, registrado = 0;
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 
@@ -212,6 +212,7 @@ public class MainController {
 		mav.addObject("email", y);
 		mav.addObject("pass", y);
 		mav.addObject("listaSexo", listaSexo);
+		mav.addObject("registrado", registrado);
 		mav.addObject("listaTusuario", listaTusuario);
 		mav.setViewName("register");
 		return mav;
@@ -223,9 +224,9 @@ public class MainController {
 			@RequestParam("nombre") String nombre, @RequestParam("email") String email,
 			@ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		System.out.print(email);
-		int usuario1 = 0, emai = 0, aux = 0, pas=0;
+		int usuario1 = 0, emai = 0, aux = 0, pas = 0, registrado = 0;
 		System.out.print("asdjjaska");
 		System.out.print(nombre);
 		Usuario usuarioUno = new Usuario();
@@ -253,19 +254,21 @@ public class MainController {
 					aux++;
 				}
 			}
-			
+
 			if (!password.equals(pass)) {
 				aux++;
-				pas=1;
-				
+				pas = 1;
+
 			}
+			mav.addObject("listaTusuario", listaTusuario);
+			mav.addObject("usuario", usuario);
+			mav.addObject("listaSexo", listaSexo);
+			mav.setViewName("register");
 			if (aux != 0) {
 				mav.addObject("username", usuario1);
 				mav.addObject("email", emai);
 				mav.addObject("pass", pas);
-				mav.addObject("listaTusuario", listaTusuario);
-				mav.addObject("usuario", usuario);
-				mav.setViewName("register");
+				mav.addObject("registrado", registrado);
 				return mav;
 			}
 			UsuarioService.insertAndUpdate(usuario);
@@ -273,38 +276,10 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mav.setViewName("index1");
+		registrado = 1;
+		mav.addObject("registrado", registrado);
 		return mav;
 
-	}
-
-	@RequestMapping("/register2")
-	public ModelAndView register2(@RequestParam Integer id1, @RequestParam Integer id2,@RequestParam Integer id3,
-			@ModelAttribute Usuario usuario) {
-		ModelAndView mav = new ModelAndView();
-		int x = 1;
-		List<Sexo> listaSexo = null;
-		List<TipoUsuario> listaTusuario = null;
-
-		try {
-
-			listaSexo = SexoService.findAll();
-			listaTusuario = TipoUsuarioService.findAll();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		usuario.setFkTipo_usuario(x);
-		usuario.setRol("ROLE_USER");
-		mav.addObject("username", id1);
-		mav.addObject("email", id2);
-		mav.addObject("pass", id3);
-		mav.addObject("usuario", usuario);
-		mav.addObject("listaSexo", listaSexo);
-		mav.addObject("listaTusuario", listaTusuario);
-		mav.setViewName("register");
-		return mav;
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
