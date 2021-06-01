@@ -38,6 +38,7 @@
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NombreUsuario</label>
                             <input id="nombre" th:field="${usuario.nombre}" name="	" type="text" class="form-control">
+                            <span style="color: red" th:if="${username==1}">El nombre de usuario ya existe, escoja otro</span>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Nombre</label>
@@ -49,6 +50,7 @@
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
+                            <span style="color: red" th:if="${email==1}">El correo ya existe, utilice otro correo</span>
                         </div>
 
                         <div class="mb-3">
@@ -58,6 +60,7 @@
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
                             <input type="password" name="pass" class="form-control" id="exampleInputPassword1">
+                            <span style="color: red" th:if="${pass==1}">Las contrasenias no coinciden </span>
                         </div>
                         <div class="mb-3">
 

@@ -35,8 +35,6 @@ import com.stripe.model.Charge;
 
 import com.Stripe.Weister2.service.*;
 
-
-
 @Controller
 @Service
 public class MainController {
@@ -61,10 +59,10 @@ public class MainController {
 
 	@Autowired
 	private UsuarioService UsuarioService;
-	
+
 	@Autowired
 	private ImagenService ImagenService;
-	
+
 	@Autowired
 	private AboutUs_Service aboutService;
 
@@ -94,15 +92,15 @@ public class MainController {
 					}
 				}
 			}
-			
+
 			for (sliderDTO sliderDTO : slider) {
-					if (aux == 0 || aux != sliderDTO.getId_producto()) {
-						producto.add(sliderDTO);
-						System.out.print(sliderDTO.getId_producto());
-						aux = sliderDTO.getId_producto();
-					}
+				if (aux == 0 || aux != sliderDTO.getId_producto()) {
+					producto.add(sliderDTO);
+					System.out.print(sliderDTO.getId_producto());
+					aux = sliderDTO.getId_producto();
+				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,30 +114,27 @@ public class MainController {
 	@RequestMapping("/about")
 	public ModelAndView about(@ModelAttribute About_us us, @ModelAttribute PersonalProfesional pro) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<About_us> listaAbout = null;
 		List<PersonalProfesional> listPro = null;
-		
+
 		try {
-			
+
 			listaAbout = aboutService.findAll();
-			listPro=proService.findAll();
-			
-		}catch(Exception e) {
+			listPro = proService.findAll();
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		mav.addObject("listaAbout", listaAbout);
 		mav.addObject("listPro", listPro);
 		mav.addObject("pro", pro);
 		mav.addObject("us", us);
 		mav.setViewName("about");
 		return mav;
-	}	
+	}
 
-	
 	@RequestMapping("/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
@@ -154,53 +149,50 @@ public class MainController {
 		return mav;
 	}
 
-
 	@RequestMapping("/product")
 	public ModelAndView product(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<Imagen> img = null;
 		List<sliderDTO> slider = null;
 		List<sliderDTO> producto2 = new ArrayList<>();
-		
+
 		Producto producto = ProductoService.findOne(id);
-		
+
 		try {
 			img = ImagenService.findImagenes(id);
-			
+
 			slider = ProductoService.dtoPrueba();
 			int aux = 0;
 			int flag = 0;
-			
+
 			for (sliderDTO sliderDTO : slider) {
-					if (aux == 0 || aux != sliderDTO.getId_producto()) {
-						producto2.add(sliderDTO);
-						System.out.print(sliderDTO.getId_producto());
-						aux = sliderDTO.getId_producto();
-					}
+				if (aux == 0 || aux != sliderDTO.getId_producto()) {
+					producto2.add(sliderDTO);
+					System.out.print(sliderDTO.getId_producto());
+					aux = sliderDTO.getId_producto();
+				}
 			}
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		
-		System.out.print("HOLA WEEEEYYY "+producto.getNombre());
-		
+
+		System.out.print("HOLA WEEEEYYY " + producto.getNombre());
+
 		mav.addObject("img", img);
-		mav.addObject("producto",producto);
+		mav.addObject("producto", producto);
 		mav.addObject("producto2", producto2);
 		mav.setViewName("product");
-		
+
 		return mav;
 	}
-	
-	
+
 	@RequestMapping("/register")
 	public ModelAndView register(@ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-		int x=1;
+		int x = 1, y = 0;
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 
@@ -208,14 +200,17 @@ public class MainController {
 
 			listaSexo = SexoService.findAll();
 			listaTusuario = TipoUsuarioService.findAll();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		usuario.setFkTipo_usuario(x);
+		mav.addObject("usuario", new Usuario());
 		usuario.setRol("ROLE_ADMIN");
+		mav.addObject("username", y);
+		mav.addObject("email", y);
+		mav.addObject("pass", y);
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("listaTusuario", listaTusuario);
 		mav.setViewName("register");
@@ -224,50 +219,94 @@ public class MainController {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping("/ingresarUsuario")
-	public String ingresarUsuario(@RequestParam("pass") String pass,@RequestParam("nombre") String nombre, @ModelAttribute Usuario usuario) {
+	public ModelAndView ingresarUsuario(@RequestParam("pass") String pass, @RequestParam("password") String password,
+			@RequestParam("nombre") String nombre, @RequestParam("email") String email,
+			@ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.print(email);
+		int usuario1 = 0, emai = 0, aux = 0, pas=0;
 		System.out.print("asdjjaska");
 		System.out.print(nombre);
 		Usuario usuarioUno = new Usuario();
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 		List<Usuario> usuarioList = null;
-	
+
 		try {
-			usuarioList =UsuarioService.findAll();
-			
+			usuarioList = UsuarioService.findAll();
+
 			listaSexo = SexoService.findAll();
 			listaTusuario = TipoUsuarioService.findAll();
 			for (Usuario Usuario : usuarioList) {
 				System.out.print(Usuario.getNombre());
-				if(Usuario.getNombre().equals(nombre)) {
+				if (Usuario.getNombre().equals(nombre)) {
 					System.out.print("YA EXISTE");
 					System.out.print(Usuario.getNombre());
-					return "redirect:/register";
+					usuario1 = 1;
+					aux++;
 				}
-				
-		}
-			if (usuario.getPassword().equals(pass)) {
-				UsuarioService.insertAndUpdate(usuario);
+				if (Usuario.getEmail().equals(email)) {
 
-			} else {
-				System.out.print("ERROR WE");
+					System.out.print(Usuario.getNombre());
+					emai = 1;
+					aux++;
+				}
 			}
+			
+			if (!password.equals(pass)) {
+				aux++;
+				pas=1;
+				
+			}
+			if (aux != 0) {
+				mav.addObject("username", usuario1);
+				mav.addObject("email", emai);
+				mav.addObject("pass", pas);
+				mav.addObject("listaTusuario", listaTusuario);
+				mav.addObject("usuario", usuario);
+				mav.setViewName("register");
+				return mav;
+			}
+			UsuarioService.insertAndUpdate(usuario);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	
+		mav.setViewName("index1");
+		return mav;
 
-		mav.addObject("listaSexo", listaSexo);
-		mav.addObject("listaTusuario", listaTusuario);
-		mav.addObject("usuario", usuario);
-		mav.setViewName("register");
-		return "redirect:/ShowCarrito";
 	}
 
-	
+	@RequestMapping("/register2")
+	public ModelAndView register2(@RequestParam Integer id1, @RequestParam Integer id2,@RequestParam Integer id3,
+			@ModelAttribute Usuario usuario) {
+		ModelAndView mav = new ModelAndView();
+		int x = 1;
+		List<Sexo> listaSexo = null;
+		List<TipoUsuario> listaTusuario = null;
+
+		try {
+
+			listaSexo = SexoService.findAll();
+			listaTusuario = TipoUsuarioService.findAll();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		usuario.setFkTipo_usuario(x);
+		usuario.setRol("ROLE_USER");
+		mav.addObject("username", id1);
+		mav.addObject("email", id2);
+		mav.addObject("pass", id3);
+		mav.addObject("usuario", usuario);
+		mav.addObject("listaSexo", listaSexo);
+		mav.addObject("listaTusuario", listaTusuario);
+		mav.setViewName("register");
+		return mav;
+	}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 	@RequestMapping("/prueba")
@@ -294,5 +333,5 @@ public class MainController {
 		mav.setViewName("prueba");
 		return mav;
 	}
-	
+
 }
