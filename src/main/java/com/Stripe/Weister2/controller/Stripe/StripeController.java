@@ -25,16 +25,14 @@ import com.Stripe.Weister2.service.StripeService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 
-
 @Controller
 public class StripeController {
 
 	@Autowired
-    private StripeService paymentsService;
-	
+	private StripeService paymentsService;
+
 	@Autowired
 	OrdenCompraService OrdenCompraService;
-
 
 	@RequestMapping("/charge")
 	public ModelAndView charge2(HttpServletRequest request, ChargeRequest chargeRequest, Model model,Authentication auth) 
@@ -46,6 +44,9 @@ public class StripeController {
         Charge charge = paymentsService.charge(chargeRequest);
         
         String name =auth.getName();
+        Object prueba =auth.getDetails();
+        System.out.print("DETALEEEEEEEEEEEESSS");
+        System.out.print(prueba);
         
         Date fecha = new Date();
         OrdenCompra oc = new OrdenCompra();
@@ -78,9 +79,9 @@ public class StripeController {
 		return mav;
 	}
 
-    @ExceptionHandler(StripeException.class)
-    public String handleError(Model model, StripeException ex) {
-        model.addAttribute("error", ex.getMessage());
-        return "result";
-    }
+	@ExceptionHandler(StripeException.class)
+	public String handleError(Model model, StripeException ex) {
+		model.addAttribute("error", ex.getMessage());
+		return "result";
+	}
 }

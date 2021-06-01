@@ -47,6 +47,13 @@ public class OrdenCompra {
 	@Column(name="userlog")
 	private String userlog;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="fk_usuario")
+	private Usuario usuario;
+	
+	@Transient
+	private Integer fk_usuario;
+	
 	public String getStatus() {
 		return status;
 	}
@@ -105,6 +112,22 @@ public class OrdenCompra {
 
 	public void setTotal_money(Integer total_money) {
 		this.total_money = total_money;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Integer getFk_usuario() {
+		return fk_usuario;
+	}
+
+	public void setFk_usuario(Integer fk_usuario) {
+		this.fk_usuario = fk_usuario;
 	}
 
 	

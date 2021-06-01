@@ -39,7 +39,7 @@
                 <div class="text-center">
                     <p class="fs-2">Agregar producto</p>
                 </div>
-                <form th:action="@{/ingresarProducto}" method="POST" th:object="${producto}">
+                <form th:action="@{/adminIngresarProducto}" method="POST" th:object="${producto}">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
                         <input id="nombre" th:field="${producto.nombre}" type="text" class="form-control">

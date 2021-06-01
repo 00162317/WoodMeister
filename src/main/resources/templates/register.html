@@ -36,11 +36,11 @@
                     <p class="fs-2">Registrar</p>
                     <form th:action="@{/ingresarUsuario}" method="POST" th:object="${usuario}">
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Username</label>
+                            <label for="exampleInputPassword1" class="form-label">NombreUsuario</label>
                             <input id="nombre" th:field="${usuario.nombre}" name="	" type="text" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Apellido</label>
+                            <label for="exampleInputPassword1" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="apellido" th:field="${usuario.apellido}">
                         </div>
                         <div class="mb-3">

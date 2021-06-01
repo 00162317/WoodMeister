@@ -43,7 +43,7 @@
                 <div class="text-center">
                     <p class="fs-2">Agregar material</p>
                 </div>
-                <form th:action="@{/ingresarMaterial}" method="POST" th:object="${material}">
+                <form th:action="@{/adminIngresarMaterial}" method="POST" th:object="${material}">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
                         <input id="nombre" th:field="${material.nombre_material}" type="text" class="form-control">

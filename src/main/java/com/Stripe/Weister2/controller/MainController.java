@@ -147,8 +147,8 @@ public class MainController {
 		return mav;
 	}
 
-	@RequestMapping("/tracking")
-	public ModelAndView tracking() {
+	@RequestMapping("/tracki")
+	public ModelAndView tracking1() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tracking");
 		return mav;
@@ -200,7 +200,7 @@ public class MainController {
 	@RequestMapping("/register")
 	public ModelAndView register(@ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-
+		int x=1;
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 
@@ -214,8 +214,8 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		usuario.setFkTipo_usuario(1);
-		usuario.setRol("ROLE_USER");
+		usuario.setFkTipo_usuario(x);
+		usuario.setRol("ROLE_ADMIN");
 		mav.addObject("listaSexo", listaSexo);
 		mav.addObject("listaTusuario", listaTusuario);
 		mav.setViewName("register");
@@ -224,26 +224,27 @@ public class MainController {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping("/ingresarUsuario")
-	public ModelAndView ingresarUsuario(@RequestParam("pass") String pass,@RequestParam("nombre") String nombre, @ModelAttribute Usuario usuario) {
+	public String ingresarUsuario(@RequestParam("pass") String pass,@RequestParam("nombre") String nombre, @ModelAttribute Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-
+		System.out.print("asdjjaska");
+		System.out.print(nombre);
 		Usuario usuarioUno = new Usuario();
 		List<Sexo> listaSexo = null;
 		List<TipoUsuario> listaTusuario = null;
 		List<Usuario> usuarioList = null;
-		
-		
+	
 		try {
 			usuarioList =UsuarioService.findAll();
+			
 			listaSexo = SexoService.findAll();
 			listaTusuario = TipoUsuarioService.findAll();
 			for (Usuario Usuario : usuarioList) {
-				if(Usuario.getNombre()== nombre) {
+				System.out.print(Usuario.getNombre());
+				if(Usuario.getNombre().equals(nombre)) {
 					System.out.print("YA EXISTE");
-
+					System.out.print(Usuario.getNombre());
+					return "redirect:/register";
 				}
-					
-			System.out.print(Usuario.getNombre());
 				
 		}
 			if (usuario.getPassword().equals(pass)) {
@@ -263,7 +264,7 @@ public class MainController {
 		mav.addObject("listaTusuario", listaTusuario);
 		mav.addObject("usuario", usuario);
 		mav.setViewName("register");
-		return mav;
+		return "redirect:/ShowCarrito";
 	}
 
 	

@@ -122,6 +122,7 @@ public class CarritoController {
 		@RequestMapping("/ShowCarrito")
 		public ModelAndView showCarrito2(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
+			
 			List<sliderDTO> p2 = Utils.getCartInSession2(request);
 		
 			request.getSession().setAttribute("myCart", p2);
@@ -171,6 +172,22 @@ public class CarritoController {
 			}
 			
 			mav.setViewName("welcome");
+			return mav;
+		}
+		@RequestMapping("/tracking")
+		public ModelAndView tracking(Authentication auth) {
+			ModelAndView mav = new ModelAndView();
+			String name =auth.getName();
+			
+			if(name != null) {
+				mav.addObject("name",name);
+				
+			}else {
+				String cor = "queso";
+				mav.addObject("name",cor);
+			}
+			
+			mav.setViewName("tracking");
 			return mav;
 		}
 
