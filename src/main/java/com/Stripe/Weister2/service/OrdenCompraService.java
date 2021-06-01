@@ -12,6 +12,7 @@ public interface OrdenCompraService {
 	
 	public void insertAndUpdate(OrdenCompra c) throws DataAccessException;
 	
+	public Integer totalDinero() throws DataAccessException;
 	
 	public void delete(OrdenCompra c) throws DataAccessException;
 

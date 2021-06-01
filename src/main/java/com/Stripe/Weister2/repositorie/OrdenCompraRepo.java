@@ -13,4 +13,7 @@ public interface OrdenCompraRepo extends JpaRepository<OrdenCompra, Integer>{
 	@Query(nativeQuery = true,value="select * from public.orden_compra")
 	public List<OrdenCompra> mostrarTodo() throws DataAccessException;
 	
+	@Query(nativeQuery = true, value="select SUM(total_money) from orden_compra")
+	public Integer totalMoney() throws DataAccessException;
+	
 }

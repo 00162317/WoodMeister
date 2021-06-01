@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.Material;
+import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.domain.Producto;
 import com.Stripe.Weister2.domain.TipoProducto;
 import com.Stripe.Weister2.dto.TablaDTO;
+import com.Stripe.Weister2.dto.sliderDTO;
 import com.Stripe.Weister2.service.*;
 
 
@@ -39,14 +43,31 @@ public class AdminController {
 	private TipoProductoService TipoProductoService;
 	
 	@Autowired
+	private OrdenCompraService OrdenCompraService;
+	
+	
+	@Autowired
 	private MainController maincontroller;
 
 	
 	
 	@RequestMapping("/adminRegistro")
-	public ModelAndView registro() {
+	public ModelAndView registro(@ModelAttribute OrdenCompra ordenCompra) {
 		ModelAndView mav = new ModelAndView();
 		
+		List<OrdenCompra> listaOrdenCompra = null;
+		
+		try {
+			listaOrdenCompra = OrdenCompraService.findAll();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Total dinero: "+OrdenCompraService.totalDinero());
+		Integer totalDin = OrdenCompraService.totalDinero();
+		mav.addObject("totalDin", totalDin);	
+		mav.addObject("listaOrdenCompra",listaOrdenCompra);
 		mav.setViewName("AdminRegistro");
 		return mav;
 	}

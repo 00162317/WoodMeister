@@ -41,4 +41,10 @@ public class OrdenCompraServiceImpl implements OrdenCompraService{
 		
 	}
 
+	@Override
+	public Integer totalDinero() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return Repo.totalMoney();
+	}
+
 }
