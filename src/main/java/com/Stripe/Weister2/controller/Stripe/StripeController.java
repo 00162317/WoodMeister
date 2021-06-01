@@ -22,11 +22,13 @@ import com.Stripe.Weister2.Utils.Utils;
 import com.Stripe.Weister2.domain.Carrito;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.OrdenCompra;
+import com.Stripe.Weister2.domain.Producto;
 import com.Stripe.Weister2.domain.Usuario;
 import com.Stripe.Weister2.dto.sliderDTO;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
 import com.Stripe.Weister2.service.CarritoService;
 import com.Stripe.Weister2.service.OrdenCompraService;
+import com.Stripe.Weister2.service.ProductoService;
 import com.Stripe.Weister2.service.StripeService;
 import com.Stripe.Weister2.service.UsuarioService;
 import com.stripe.exception.StripeException;
@@ -43,6 +45,8 @@ public class StripeController {
 	OrdenCompraService OrdenCompraService;
 	@Autowired
 	private CarritoService CarritoService;
+	@Autowired
+	private ProductoService ProductoService;
 
 	@RequestMapping("/charge")
 	public ModelAndView charge2(HttpServletRequest request, ChargeRequest chargeRequest, Model model,Authentication auth) 
@@ -58,7 +62,7 @@ public class StripeController {
         System.out.print(usuario.getId_usuario());
         Date fecha = new Date();
         OrdenCompra oc = new OrdenCompra();
-        Carrito car =new Carrito();
+        
         
         
         mav.addObject("id", charge.getId().toString());
@@ -77,16 +81,20 @@ public class StripeController {
 		int y= p2.size();
 		System.out.println(y);
 		try {
-			if(aux<=y) {
+		
 		for (int i=0 ; i<=y ; i++) {
-			car.setCantidad(1);
+			Producto p= new Producto();
+			p = ProductoService.findOne(p2.get(i).getId_producto());
+			Carrito car =new Carrito();
+			car.setCorrelativo(charge.getId());
 			car.setValor_money(p2.get(i).getPrecio());
 			car.setMaterial(p2.get(i).getMaterial());	
 			car.setUsuario(usuario);
+			car.setProducto(p);
+			CarritoService.insertAndUpdate(car);
 		}
-		CarritoService.insertAndUpdate(car);
-		aux++;
-			}
+
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -20,8 +20,8 @@ public class Carrito {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_carrito;
 	
-	@Column(name = "cantidad")
-	private Integer cantidad;
+	@Column(name = "correlativo")
+	private String correlativo;
 	
 	@Column(name = "valor_money")
 	private Integer valor_money;
@@ -64,12 +64,14 @@ public class Carrito {
 		this.id_carrito = id_carrito;
 	}
 
-	public Integer getCantidad() {
-		return cantidad;
+	
+
+	public String getCorrelativo() {
+		return correlativo;
 	}
 
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
+	public void setCorrelativo(String correlativo) {
+		this.correlativo = correlativo;
 	}
 
 	public Integer getValor_money() {
