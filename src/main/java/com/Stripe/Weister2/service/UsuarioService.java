@@ -15,6 +15,6 @@ public interface UsuarioService {
 	
 	
 	public void delete(Usuario c) throws DataAccessException;
-	public Optional<Usuario> findByNombre(String username) throws DataAccessException;
+	public Usuario findByNombre(String username) throws DataAccessException;
 	public Optional<Usuario> findByEmail(String email) throws DataAccessException;
 }

@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
-	public Optional<Usuario> findByNombre(String username) throws DataAccessException {
+	public Usuario findByNombre(String username) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return Repo.findByNombre(username);
 	}

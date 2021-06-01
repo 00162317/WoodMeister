@@ -2,6 +2,7 @@ package com.Stripe.Weister2.controller.Stripe;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +23,7 @@ import com.Stripe.Weister2.domain.Usuario;
 import com.Stripe.Weister2.domain.ChargeRequest.Currency;
 import com.Stripe.Weister2.service.OrdenCompraService;
 import com.Stripe.Weister2.service.StripeService;
+import com.Stripe.Weister2.service.UsuarioService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 
@@ -30,7 +32,8 @@ public class StripeController {
 
 	@Autowired
 	private StripeService paymentsService;
-
+	@Autowired
+	private UsuarioService usuarioService;
 	@Autowired
 	OrdenCompraService OrdenCompraService;
 
@@ -42,12 +45,10 @@ public class StripeController {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(Currency.USD);
         Charge charge = paymentsService.charge(chargeRequest);
-        
         String name =auth.getName();
-        Object prueba =auth.getDetails();
-        System.out.print("DETALEEEEEEEEEEEESSS");
-        System.out.print(prueba);
-        
+        Usuario usuario = usuarioService.findByNombre(name);
+       
+        System.out.print(usuario.getId_usuario());
         Date fecha = new Date();
         OrdenCompra oc = new OrdenCompra();
         
@@ -65,7 +66,9 @@ public class StripeController {
 		
 		oc.setFecha(fecha);
 		oc.setTotal_money(2);
-		
+		oc.setFk_usuario(usuario.getId_usuario());
+		System.out.print("FKKKKKKKKKK");
+		System.out.print(oc.getFk_usuario());
 		oc.setStatus(charge.getStatus());
 		oc.setCorrelativo(charge.getId());
 		oc.setBalance(charge.getBalanceTransaction());
