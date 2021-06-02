@@ -1,6 +1,12 @@
 package com.Stripe.Weister2.controller;
 
 import org.springframework.stereotype.Controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +20,16 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Stripe.Weister2.Utils.Utils;
+import com.Stripe.Weister2.domain.Imagen;
 import com.Stripe.Weister2.domain.Material;
 import com.Stripe.Weister2.domain.OrdenCompra;
 import com.Stripe.Weister2.domain.Producto;
@@ -48,14 +58,55 @@ public class AdminController {
 	
 	@Autowired
 	private MainController maincontroller;
-
+	
+	@Autowired
+	private ImagenService ImagenService;
 	
 	//adminAgregarImagen
 	@RequestMapping("/adminAgregarImagen")
-	public ModelAndView respuesta2() {
+	public ModelAndView respuesta2(@ModelAttribute Producto producto) {
 		ModelAndView mav = new ModelAndView();
+		List<Producto> prod= null;
+		
+		try {
+			prod=ProductoService.findAll();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		mav.addObject("prod",prod);
 		mav.setViewName("respuesta2");
 		return mav;
+	}
+	@PostMapping("/adminIngresarImagen")
+	public String uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("eleccion") Integer id, RedirectAttributes attributes,@ModelAttribute Producto producto)
+			throws IOException {
+
+		if (file == null || file.isEmpty()) {
+			return "redirect:/adminAgregarImagen";
+		}
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(System.getProperty("user.dir"));
+		builder.append(File.separator);
+		builder.append("src");
+		builder.append(File.separator);
+		builder.append(file.getOriginalFilename());
+		
+		System.out.println(builder);
+
+		byte[] fileBytes = file.getBytes();
+		Path path = Paths.get(builder.toString());
+		Files.write(path, fileBytes);
+		//usuario.setImg(file.getOriginalFilename().toString());
+		//usuarioDAO.insert(usuario);
+		Imagen imagen = new Imagen();
+		Producto producto3 = new Producto();
+		producto3.setId_producto(4);
+		imagen.setProducto(producto3);
+		imagen.setNombre(file.getOriginalFilename().toString());
+		ImagenService.insertAndUpdate(imagen);
+		return "redirect:/adminAgregarImagen";
 	}
 	@RequestMapping("/adminRegistro")
 	public ModelAndView registro(@ModelAttribute OrdenCompra ordenCompra) {
