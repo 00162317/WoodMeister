@@ -204,6 +204,31 @@ public class CarritoController {
 			mav.setViewName("tracking");
 			return mav;
 		}
+		@RequestMapping("/orderDetails")
+		public ModelAndView orderDetails(@RequestParam String id, Authentication auth) {
+			ModelAndView mav = new ModelAndView();
+			List<OrdenCompra> ordenes = null;
+			String name =auth.getName();
+			 Usuario usuario = UsuarioService.findByNombre(name);
+	
+			if(name != null) {
+				mav.addObject("name",name);
+				
+			}else {
+				String cor = "queso";
+				mav.addObject("name",cor);
+			}
+			
+			try {
+				ordenes = OrdenCompraService.findPersonOrders(usuario.getId_usuario());
+				
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			mav.addObject("ordenes",ordenes);
+			mav.setViewName("tracking2");
+			return mav;
+		}
 
 
 }

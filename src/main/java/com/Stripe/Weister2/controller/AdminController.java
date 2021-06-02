@@ -50,7 +50,13 @@ public class AdminController {
 	private MainController maincontroller;
 
 	
-	
+	//adminAgregarImagen
+	@RequestMapping("/adminAgregarImagen")
+	public ModelAndView respuesta2() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("respuesta2");
+		return mav;
+	}
 	@RequestMapping("/adminRegistro")
 	public ModelAndView registro(@ModelAttribute OrdenCompra ordenCompra) {
 		ModelAndView mav = new ModelAndView();
