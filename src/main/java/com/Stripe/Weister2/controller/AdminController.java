@@ -102,7 +102,7 @@ public class AdminController {
 		//usuarioDAO.insert(usuario);
 		Imagen imagen = new Imagen();
 		Producto producto3 = new Producto();
-		producto3.setId_producto(4);
+		producto3.setId_producto(id);
 		imagen.setProducto(producto3);
 		imagen.setNombre(file.getOriginalFilename().toString());
 		ImagenService.insertAndUpdate(imagen);
