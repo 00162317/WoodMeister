@@ -17,4 +17,6 @@ public interface OrdenCompraService {
 	public void delete(OrdenCompra c) throws DataAccessException;
 	
 	public List<OrdenCompra> findPersonOrders(Integer code)throws DataAccessException;
+	
+	public OrdenCompra obtenerCorrelativo(Integer code)throws DataAccessException;
 }

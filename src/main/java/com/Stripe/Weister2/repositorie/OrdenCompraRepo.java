@@ -20,4 +20,8 @@ public interface OrdenCompraRepo extends JpaRepository<OrdenCompra, Integer>{
 			value = " select * from orden_compra ord, usuario u where ord.fk_usuario = u.id_usuario "
 					+ " and u.id_usuario = ?1")
 	public List<OrdenCompra> findList(Integer code)throws DataAccessException;
+	
+	@Query(nativeQuery = true, value=" Select * from orden_compra ord where ord.id_orden_compra =?1 ")
+	public OrdenCompra obtenerUno(Integer code)throws DataAccessException;
+	
 }

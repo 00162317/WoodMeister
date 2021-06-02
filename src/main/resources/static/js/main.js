@@ -24,8 +24,7 @@ function obtenerIds(id) {
 function track(id) {
 	let cod= document.getElementById("demo2").value;
 	let cod2= document.getElementById("demo2").text;
-	alert(cod)
-	alert(cod2)
+
 	location.href = './orderDetails?id='+ id;
     
 };

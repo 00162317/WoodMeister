@@ -53,4 +53,10 @@ public class OrdenCompraServiceImpl implements OrdenCompraService{
 		return Repo.findList(code);
 	}
 
+	@Override
+	public OrdenCompra obtenerCorrelativo(Integer code) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return Repo.obtenerUno(code);
+	}
+
 }

@@ -14,4 +14,6 @@ public interface CarritoService {
 	
 	
 	public void delete(Carrito c) throws DataAccessException;
+	
+	public List<Carrito> unCorr(String code)throws DataAccessException;
 }

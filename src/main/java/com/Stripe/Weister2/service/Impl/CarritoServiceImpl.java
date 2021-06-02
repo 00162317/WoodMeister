@@ -41,4 +41,10 @@ public class CarritoServiceImpl implements CarritoService{
 		
 	}
 
+	@Override
+	public List<Carrito> unCorr(String code) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return Repo.unCorrelativo(code);
+	}
+
 }

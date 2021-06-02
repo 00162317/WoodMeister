@@ -12,4 +12,8 @@ public interface CarritoRepo extends JpaRepository<Carrito, Integer> {
 
 	@Query(nativeQuery = true,value="select * from public.carrito")
 	public List<Carrito> mostrarTodo() throws DataAccessException;
+	
+	
+	@Query(nativeQuery = true,value=" select * from public.carrito car where car.correlativo= ?1 ")
+	public List<Carrito> unCorrelativo(String code) throws DataAccessException;
 }

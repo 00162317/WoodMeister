@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.SessionAttributeMethodArgumentResolver;
 
 import com.Stripe.Weister2.Utils.Utils;
+import com.Stripe.Weister2.domain.Carrito;
 import com.Stripe.Weister2.domain.ChargeRequest;
 import com.Stripe.Weister2.domain.Producto;
 import com.Stripe.Weister2.domain.Usuario;
@@ -53,6 +54,10 @@ public class CarritoController {
 	
 	@Autowired
 	private UsuarioService UsuarioService;
+	
+	@Autowired
+	private CarritoService CarritoService;
+	
 	
 	@Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
@@ -205,12 +210,14 @@ public class CarritoController {
 			return mav;
 		}
 		@RequestMapping("/orderDetails")
-		public ModelAndView orderDetails(@RequestParam String id, Authentication auth) {
+		public ModelAndView orderDetails(@RequestParam Integer id, Authentication auth) {
 			ModelAndView mav = new ModelAndView();
 			List<OrdenCompra> ordenes = null;
 			String name =auth.getName();
 			 Usuario usuario = UsuarioService.findByNombre(name);
-	
+			 OrdenCompra or = OrdenCompraService.obtenerCorrelativo(id);
+			 String correlativo = or.getCorrelativo();
+			 List<Carrito> car = null;
 			if(name != null) {
 				mav.addObject("name",name);
 				
@@ -221,11 +228,11 @@ public class CarritoController {
 			
 			try {
 				ordenes = OrdenCompraService.findPersonOrders(usuario.getId_usuario());
-				
+				car = CarritoService.unCorr(correlativo);
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
-			mav.addObject("ordenes",ordenes);
+			mav.addObject("ordenes",car);
 			mav.setViewName("tracking2");
 			return mav;
 		}
